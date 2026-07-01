@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | ZYA Law Firm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #c9a227;
+            --accent-light: #d4af37;
+            --text-dark: #1a202c;
+            --text-medium: #4a5568;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --bg-white: #ffffff;
+            --bg-dark: #0a1929;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-dark); min-height: 100vh; }
+
+        /* ===== LOGIN PAGE ===== */
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--bg-dark) 100%);
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            padding: 48px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 60px; height: 60px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            margin: 0 auto 24px;
+        }
+
+        .login-box h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .login-box p {
+            color: var(--text-medium);
+            font-size: 15px;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-login:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .error-msg {
+            color: #e53e3e;
+            font-size: 14px;
+            margin-top: 16px;
+            display: none;
+            padding: 12px;
+            background: rgba(229, 62, 62, 0.1);
+            border-radius: 8px;
+        }
+
+        .error-msg.show { display: block; }
+
+        /* ===== DASHBOARD ===== */
+        .dashboard {
+            display: none;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0; top: 0; bottom: 0;
+            width: 260px;
+            background: var(--primary);
+            color: white;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-logo-icon {
+            width: 44px; height: 44px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .sidebar-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .sidebar-logo-text span { color: var(--accent); }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-item i {
+            font-size: 18px;
+            width: 24px;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: #e53e3e;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 50px;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .user-avatar {
+            width: 40px; height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .user-name { font-size: 14px; font-weight: 600; }
+        .user-role { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+        .btn-logout {
+            width: 100%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-logout:hover { background: rgba(229, 62, 62, 0.8); }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 32px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--primary);
+        }
+
+        .page-header p {
+            color: var(--text-medium);
+            font-size: 15px;
+            margin-top: 4px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .stat-card-icon {
+            width: 48px; height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .stat-card-icon.blue { background: rgba(26, 54, 93, 0.1); color: var(--primary); }
+        .stat-card-icon.green { background: rgba(72, 187, 120, 0.1); color: #48bb78; }
+        .stat-card-icon.orange { background: rgba(237, 137, 54, 0.1); color: #ed8936; }
+        .stat-card-icon.red { background: rgba(229, 62, 62, 0.1); color: #e53e3e; }
+        .stat-card-icon.purple { background: rgba(159, 122, 234, 0.1); color: #9f7aea; }
+
+        .stat-card h3 {
+            font-size: 32px;
+            color: var(--primary);
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+
+        .stat-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        /* Table */
+        .contacts-section {
+            background: white;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+
+        .contacts-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contacts-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--primary);
+        }
+
+        .btn-refresh {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-refresh:hover { background: var(--primary); color: white; }
+
+        .table-container { overflow-x: auto; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--bg-light);
+            padding: 16px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 16px;
+            font-size: 14px;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover td { background: var(--bg-light); }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-new { background: rgba(72, 187, 120, 0.1); color: #48bb78; }
+        .badge-urgent { background: rgba(229, 62, 62, 0.1); color: #e53e3e; }
+        .badge-work { background: rgba(66, 153, 225, 0.1); color: #4299e1; }
+        .badge-study { background: rgba(159, 122, 234, 0.1); color: #9f7aea; }
+        .badge-family { background: rgba(236, 112, 99, 0.1); color: #ec7063; }
+
+        .contact-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .contact-email { font-size: 13px; color: var(--text-light); }
+
+        .contact-date { font-size: 13px; color: var(--text-light); }
+
+        .btn-view {
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-view:hover { background: var(--primary-light); }
+
+        .btn-action {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-right: 4px;
+        }
+
+        .btn-action:hover { background: var(--accent-light); }
+
+        .no-data {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+        }
+
+        .no-data i { font-size: 48px; margin-bottom: 16px; color: var(--border); }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading.show { display: block; }
+
+        .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.show { display: flex; }
+
+        .modal {
+            background: white;
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--primary);
+        }
+
+        .modal-close {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg-light);
+            color: var(--text-medium);
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover { background: var(--border); }
+
+        .modal-body { padding: 24px; }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: 16px;
+        }
+
+        .detail-label {
+            width: 140px;
+            font-weight: 600;
+            color: var(--text-medium);
+            font-size: 14px;
+        }
+
+        .detail-value {
+            flex: 1;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+
+        .detail-message {
+            background: var(--bg-light);
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 8px;
+            line-height: 1.6;
+            color: var(--text-medium);
+        }
+
+        /* Status Update Form */
+        .status-form {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 2px solid var(--border);
+        }
+
+        .status-form h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 12px;
+        }
+
+        .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-textarea { resize: vertical; min-height: 80px; }
+
+        .btn-update {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-update:hover { background: var(--accent-light); }
+
+        /* Chat in Modal */
+        .admin-chat {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 16px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .admin-chat-message {
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .admin-chat-message.client {
+            background: white;
+            border: 1px solid var(--border);
+            margin-right: 20%;
+        }
+
+        .admin-chat-message.admin {
+            background: var(--primary);
+            color: white;
+            margin-left: 20%;
+        }
+
+        .chat-meta {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-bottom: 4px;
+        }
+
+        .chat-reply {
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-reply input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .chat-reply input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar { width: 80px; padding: 16px; }
+            .sidebar-logo-text, .user-name, .user-role, .nav-item span { display: none; }
+            .nav-item { justify-content: center; padding: 16px; }
+            .main-content { margin-left: 80px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .main-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div class="login-page" id="loginPage">
+        <div class="login-box">
+            <div class="login-logo">Z</div>
+            <h1>ZYA Law Admin</h1>
+            <p>Secure access for authorized personnel only.</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-lock"></i> Secure Login
+                </button>
+                <div class="error-msg" id="loginError"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard" id="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">Z</div>
+                <div class="sidebar-logo-text">ZYA <span>Law</span></div>
+            </div>
+            
+            <div class="nav-item active" onclick="showSection('contacts')">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item" onclick="showSection('clients')">
+                <i class="fas fa-users"></i>
+                <span>Clients</span>
+                <span class="nav-badge" id="clientBadge" style="display: none;">0</span>
+            </div>
+            <div class="nav-item" onclick="showSection('cases')">
+                <i class="fas fa-briefcase"></i>
+                <span>Cases</span>
+                <span class="nav-badge" id="caseBadge" style="display: none;">0</span>
+            </div>
+            <div class="nav-item" onclick="showSection('messages')">
+                <i class="fas fa-comments"></i>
+                <span>Messages</span>
+                <span class="nav-badge" id="messageBadge" style="display: none;">0</span>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">Z</div>
+                    <div>
+                        <div class="user-name" id="adminName">Zainab</div>
+                        <div class="user-role">Administrator</div>
+                    </div>
+                </div>
+                <button class="btn-logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- DASHBOARD / CONTACTS SECTION -->
+            <div id="contactsSection">
+                <div class="page-header">
+                    <div>
+                        <h1>Dashboard</h1>
+                        <p>Overview of all consultation requests</p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon blue"><i class="fas fa-users"></i></div>
+                        </div>
+                        <h3 id="totalContacts">0</h3>
+                        <p>Total Contacts</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon green"><i class="fas fa-calendar-day"></i></div>
+                        </div>
+                        <h3 id="todayContacts">0</h3>
+                        <p>New Today</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon orange"><i class="fas fa-clock"></i></div>
+                        </div>
+                        <h3 id="pendingContacts">0</h3>
+                        <p>Pending</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon red"><i class="fas fa-exclamation-circle"></i></div>
+                        </div>
+                        <h3 id="urgentContacts">0</h3>
+                        <p>Urgent (Deportation)</p>
+                    </div>
+                </div>
+
+                <div class="contacts-section">
+                    <div class="contacts-header">
+                        <h2>All Submissions</h2>
+                        <button class="btn-refresh" id="refreshBtn">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                    
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <p>Loading contacts...</p>
+                    </div>
+
+                    <div class="table-container" id="tableContainer">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                    <th>Service</th>
+                                    <th>Language</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contactsTable"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="no-data" id="noData" style="display: none;">
+                        <i class="fas fa-inbox"></i>
+                        <p>No submissions yet.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLIENTS SECTION -->
+            <div id="clientsSection" style="display: none;">
+                <div class="page-header">
+                    <div>
+                        <h1>Clients</h1>
+                        <p>All registered client accounts</p>
+                    </div>
+                </div>
+                <div class="contacts-section">
+                    <div class="contacts-header">
+                        <h2>Client Accounts</h2>
+                        <button class="btn-refresh" onclick="loadClients()">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                    <div class="table-container" id="clientsTableContainer">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Joined</th>
+                                    <th>Cases</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clientsTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CASES SECTION -->
+            <div id="casesSection" style="display: none;">
+                <div class="page-header">
+                    <div>
+                        <h1>Cases</h1>
+                        <p>Manage all immigration cases</p>
+                    </div>
+                </div>
+                <div class="contacts-section">
+                    <div class="contacts-header">
+                        <h2>All Cases</h2>
+                        <button class="btn-refresh" onclick="loadCases()">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                    <div class="table-container" id="casesTableContainer">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Client</th>
+                                    <th>Service</th>
+                                    <th>Status</th>
+                                    <th>Last Updated</th>
+                                    <th>Messages</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="casesTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MESSAGES SECTION -->
+            <div id="messagesSection" style="display: none;">
+                <div class="page-header">
+                    <div>
+                        <h1>Messages</h1>
+                        <p>Client communications</p>
+                    </div>
+                </div>
+                <div class="contacts-section">
+                    <div class="contacts-header">
+                        <h2>Recent Messages</h2>
+                    </div>
+                    <div id="messagesList">
+                        <div class="no-data">
+                            <i class="fas fa-comments"></i>
+                            <p>Loading messages...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Contact Details</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // ===== CONFIG =====
+        const API_URL = window.location.protocol === 'file:' || window.location.port === '5500'
+            ? 'http://localhost:5000/api'
+            : `${window.location.origin}/api`;
+
+        // ===== DOM ELEMENTS =====
+        const loginPage = document.getElementById('loginPage');
+        const dashboard = document.getElementById('dashboard');
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const loading = document.getElementById('loading');
+        const tableContainer = document.getElementById('tableContainer');
+        const contactsTable = document.getElementById('contactsTable');
+        const noData = document.getElementById('noData');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalClose = document.getElementById('modalClose');
+        const modalBody = document.getElementById('modalBody');
+
+        // ===== CHECK IF ALREADY LOGGED IN =====
+        const token = localStorage.getItem('adminToken');
+        if (token) {
+            showDashboard();
+            loadContacts();
+        }
+
+        // ===== LOGIN =====
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            loginError.classList.remove('show');
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    localStorage.setItem('adminToken', data.token);
+                    showDashboard();
+                    loadContacts();
+                } else {
+                    loginError.textContent = data.message || 'Invalid credentials.';
+                    loginError.classList.add('show');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                loginError.textContent = 'Cannot connect to server. Make sure server is running on port 5000.';
+                loginError.classList.add('show');
+            }
+        });
+
+        // ===== LOGOUT =====
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('adminToken');
+            location.reload();
+        });
+
+        // ===== SHOW DASHBOARD =====
+        function showDashboard() {
+            loginPage.style.display = 'none';
+            dashboard.style.display = 'block';
+        }
+
+        // ===== SECTION NAVIGATION =====
+        function showSection(section) {
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            document.getElementById('contactsSection').style.display = 'none';
+            document.getElementById('clientsSection').style.display = 'none';
+            document.getElementById('casesSection').style.display = 'none';
+            document.getElementById('messagesSection').style.display = 'none';
+
+            document.getElementById(section + 'Section').style.display = 'block';
+
+            if (section === 'clients') loadClients();
+            if (section === 'cases') loadCases();
+            if (section === 'messages') loadMessages();
+        }
+
+        // ===== LOAD CONTACTS =====
+        async function loadContacts() {
+            loading.classList.add('show');
+            tableContainer.style.display = 'none';
+            noData.style.display = 'none';
+
+            try {
+                const token = localStorage.getItem('adminToken');
+                const response = await fetch(`${API_URL}/contact`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.status === 401) {
+                    localStorage.removeItem('adminToken');
+                    location.reload();
+                    return;
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    updateStats(data.contacts);
+                    renderTable(data.contacts);
+                }
+            } catch (error) {
+                console.error('Error loading contacts:', error);
+            } finally {
+                loading.classList.remove('show');
+            }
+        }
+
+        // ===== UPDATE STATS =====
+        function updateStats(contacts) {
+            const total = contacts.length;
+            const today = contacts.filter(c => {
+                const date = new Date(c.created_at);
+                const now = new Date();
+                return date.toDateString() === now.toDateString();
+            }).length;
+            const pending = contacts.filter(c => !c.contacted).length;
+            const urgent = contacts.filter(c => c.service === 'deportation').length;
+
+            document.getElementById('totalContacts').textContent = total;
+            document.getElementById('todayContacts').textContent = today;
+            document.getElementById('pendingContacts').textContent = pending;
+            document.getElementById('urgentContacts').textContent = urgent;
+        }
+
+        // ===== RENDER TABLE =====
+        function renderTable(contacts) {
+            if (contacts.length === 0) {
+                noData.style.display = 'block';
+                return;
+            }
+
+            tableContainer.style.display = 'block';
+            
+            contactsTable.innerHTML = contacts.map(contact => {
+                const date = new Date(contact.created_at).toLocaleDateString('en-US', {
+                    month: 'short', day: 'numeric', year: 'numeric'
+                });
+                
+                const serviceBadges = {
+                    'work-visa': 'badge-work',
+                    'study-permit': 'badge-study',
+                    'family-sponsorship': 'badge-family',
+                    'deportation': 'badge-urgent'
+                };
+
+                const serviceLabels = {
+                    'work-visa': 'Work Visa',
+                    'study-permit': 'Study Permit',
+                    'family-sponsorship': 'Family',
+                    'express-entry': 'Express Entry',
+                    'citizenship': 'Citizenship',
+                    'deportation': 'Deportation'
+                };
+
+                const badgeClass = serviceBadges[contact.service] || 'badge-new';
+                const serviceLabel = serviceLabels[contact.service] || contact.service;
+
+                return `
+                    <tr>
+                        <td>
+                            <div class="contact-name">${contact.firstName} ${contact.lastName}</div>
+                        </td>
+                        <td>
+                            <div>${contact.email}</div>
+                            <div class="contact-email">${contact.phone}</div>
+                        </td>
+                        <td><span class="badge ${badgeClass}">${serviceLabel}</span></td>
+                        <td>${contact.language || 'English'}</td>
+                        <td class="contact-date">${date}</td>
+                        <td>
+                            <button class="btn-view" onclick="viewContact(${contact.id})">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // ===== VIEW CONTACT DETAIL =====
+        async function viewContact(id) {
+            const token = localStorage.getItem('adminToken');
+            
+            try {
+                const response = await fetch(`${API_URL}/contact`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                const contact = data.contacts.find(c => c.id === id);
+                
+                if (!contact) return;
+
+                modalBody.innerHTML = `
+                    <div class="detail-row">
+                        <div class="detail-label">Full Name:</div>
+                        <div class="detail-value">${contact.firstName} ${contact.lastName}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Email:</div>
+                        <div class="detail-value"><a href="mailto:${contact.email}">${contact.email}</a></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Phone:</div>
+                        <div class="detail-value"><a href="tel:${contact.phone}">${contact.phone}</a></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Language:</div>
+                        <div class="detail-value">${contact.language || 'English'}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Service:</div>
+                        <div class="detail-value">${contact.service}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Status:</div>
+                        <div class="detail-value">${contact.status || 'Not specified'}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Submitted:</div>
+                        <div class="detail-value">${new Date(contact.created_at).toLocaleString()}</div>
+                    </div>
+                    <div class="detail-row" style="flex-direction: column;">
+                        <div class="detail-label" style="margin-bottom: 8px;">Message:</div>
+                        <div class="detail-message">${contact.message || 'No message provided.'}</div>
+                    </div>
+                `;
+
+                modalOverlay.classList.add('show');
+
+            } catch (error) {
+                console.error('Error viewing contact:', error);
+            }
+        }
+
+        // ===== LOAD CLIENTS =====
+        async function loadClients() {
+            // This would fetch from a new endpoint - for now show placeholder
+            document.getElementById('clientsTable').innerHTML = `
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 40px; color: var(--text-light);">
+                        <i class="fas fa-users" style="font-size: 32px; margin-bottom: 12px; display: block;"></i>
+                        Client accounts are auto-created when forms are submitted.<br>
+                        Check the Contacts tab for now - full client management coming soon.
+                    </td>
+                </tr>
+            `;
+        }
+
+        // ===== LOAD CASES =====
+        async function loadCases() {
+            try {
+                const token = localStorage.getItem('adminToken');
+                const response = await fetch(`${API_URL}/case/admin/all`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const casesTable = document.getElementById('casesTable');
+                    if (data.cases.length === 0) {
+                        casesTable.innerHTML = `
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 40px; color: var(--text-light);">
+                                    <i class="fas fa-briefcase" style="font-size: 32px; margin-bottom: 12px; display: block;"></i>
+                                    No cases yet. Cases are auto-created when clients submit forms.
+                                </td>
+                            </tr>
+                        `;
+                    } else {
+                        const statusLabels = {
+                            'submitted': 'Submitted',
+                            'under_review': 'Under Review',
+                            'documents_needed': 'Documents Needed',
+                            'in_progress': 'In Progress',
+                            'decision_made': 'Decision Made',
+                            'closed': 'Closed'
+                        };
+
+                        const serviceLabels = {
+                            'work-visa': 'Work Visa',
+                            'study-permit': 'Study Permit',
+                            'family-sponsorship': 'Family',
+                            'express-entry': 'Express Entry',
+                            'citizenship': 'Citizenship',
+                            'deportation': 'Deportation'
+                        };
+
+                        casesTable.innerHTML = data.cases.map(c => `
+                            <tr>
+                                <td>
+                                    <div class="contact-name">${c.first_name} ${c.last_name}</div>
+                                    <div class="contact-email">${c.email}</div>
+                                </td>
+                                <td>${serviceLabels[c.service_type] || c.service_type}</td>
+                                <td><span class="badge badge-${c.status === 'submitted' ? 'new' : c.status === 'deportation' ? 'urgent' : 'work'}">${statusLabels[c.status] || c.status}</span></td>
+                                <td class="contact-date">${new Date(c.updated_at).toLocaleDateString()}</td>
+                                <td>${c.unread_messages || 0} unread</td>
+                                <td>
+                                    <button class="btn-action" onclick="openCaseModal(${c.id})">
+                                        <i class="fas fa-edit"></i> Manage
+                                    </button>
+                                </td>
+                            </tr>
+                        `).join('');
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading cases:', error);
+            }
+        }
+
+        // ===== OPEN CASE MANAGEMENT MODAL =====
+        async function openCaseModal(caseId) {
+            const token = localStorage.getItem('adminToken');
+            
+            try {
+                // Get messages for this case
+                const msgResponse = await fetch(`${API_URL}/message/admin/${caseId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const msgData = await msgResponse.json();
+
+                modalBody.innerHTML = `
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 16px;">
+                            <i class="fas fa-comments" style="color: var(--accent); margin-right: 8px;"></i>Client Messages
+                        </h4>
+                        <div class="admin-chat" id="adminChat">
+                            ${msgData.messages && msgData.messages.length > 0 ? msgData.messages.map(m => `
+                                <div class="admin-chat-message ${m.sender_type}">
+                                    <div class="chat-meta">${m.sender_type === 'client' ? 'Client' : 'You'} • ${new Date(m.created_at).toLocaleString()}</div>
+                                    ${m.content}
+                                </div>
+                            `).join('') : '<p style="text-align: center; color: var(--text-light);">No messages yet.</p>'}
+                        </div>
+                        <div class="chat-reply">
+                            <input type="text" id="replyInput" placeholder="Type your reply to the client...">
+                            <button class="btn-action" onclick="sendReply(${caseId})">
+                                <i class="fas fa-paper-plane"></i> Send
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="status-form">
+                        <h4><i class="fas fa-tasks" style="color: var(--accent); margin-right: 8px;"></i>Update Case Status</h4>
+                        <select class="form-select" id="statusSelect">
+                            <option value="submitted">Submitted</option>
+                            <option value="under_review">Under Review</option>
+                            <option value="documents_needed">Documents Needed</option>
+                            <option value="in_progress">In Progress</option>
+                            <option value="decision_made">Decision Made</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                        <textarea class="form-textarea" id="statusNote" placeholder="Add a note about this status update (optional)..."></textarea>
+                        <button class="btn-update" onclick="updateCaseStatus(${caseId})">
+                            <i class="fas fa-save"></i> Update Status
+                        </button>
+                    </div>
+                `;
+
+                modalOverlay.classList.add('show');
+
+            } catch (error) {
+                console.error('Error opening case modal:', error);
+            }
+        }
+
+        // ===== SEND REPLY =====
+        async function sendReply(caseId) {
+            const input = document.getElementById('replyInput');
+            const content = input.value.trim();
+            if (!content) return;
+
+            try {
+                const token = localStorage.getItem('adminToken');
+                const response = await fetch(`${API_URL}/message/admin/send`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ caseId, content })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    input.value = '';
+                    openCaseModal(caseId); // Refresh
+                }
+            } catch (error) {
+                console.error('Error sending reply:', error);
+            }
+        }
+
+        // ===== UPDATE CASE STATUS =====
+        async function updateCaseStatus(caseId) {
+            const status = document.getElementById('statusSelect').value;
+            const note = document.getElementById('statusNote').value;
+
+            try {
+                const token = localStorage.getItem('adminToken');
+                const response = await fetch(`${API_URL}/case/admin/${caseId}/status`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ status, note })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Case status updated successfully!');
+                    modalOverlay.classList.remove('show');
+                    loadCases();
+                }
+            } catch (error) {
+                console.error('Error updating status:', error);
+            }
+        }
+
+        // ===== LOAD MESSAGES =====
+        async function loadMessages() {
+            document.getElementById('messagesList').innerHTML = `
+                <div class="no-data">
+                    <i class="fas fa-comments"></i>
+                    <p>Messages are managed per case. Go to the Cases tab and click "Manage" to view and reply to client messages.</p>
+                </div>
+            `;
+        }
+
+        // ===== MODAL CLOSE =====
+        modalClose.addEventListener('click', () => {
+            modalOverlay.classList.remove('show');
+        });
+
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('show');
+            }
+        });
+
+        // ===== REFRESH =====
+        refreshBtn.addEventListener('click', loadContacts);
+
+    </script>
+</body>
+</html>

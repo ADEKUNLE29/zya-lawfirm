@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal | ZYA Law Firm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #16365c;
+            --primary-dark: #0f2744;
+            --accent: #c9a227;
+            --accent-soft: #fff7dc;
+            --ink: #172033;
+            --muted: #677489;
+            --line: #dfe7f1;
+            --panel: #ffffff;
+            --bg: #f5f7fb;
+            --success: #16875f;
+            --warning: #b7791f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        .topbar {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 0 28px;
+            background: var(--panel);
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .brand-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            background: var(--primary);
+            color: var(--accent);
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            flex: 0 0 auto;
+        }
+
+        .brand h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+
+        .brand p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+        }
+
+        .btn {
+            min-height: 42px;
+            border: 0;
+            border-radius: 8px;
+            padding: 0 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-ghost {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--line);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--primary);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 360px;
+            gap: 24px;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 28px;
+        }
+
+        .main,
+        .side {
+            display: grid;
+            gap: 20px;
+            align-content: start;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .panel-header h2 {
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .panel-body {
+            padding: 20px;
+        }
+
+        .case-summary {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            border-top: 1px solid var(--line);
+        }
+
+        .summary-cell {
+            min-height: 94px;
+            padding: 18px 20px;
+            border-right: 1px solid var(--line);
+        }
+
+        .summary-cell:last-child {
+            border-right: 0;
+        }
+
+        .summary-label {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .summary-value {
+            color: var(--ink);
+            font-size: 17px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: #7a5a09;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 28px minmax(0, 1fr);
+            gap: 12px;
+            padding: 0 0 18px;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 13px;
+            top: 28px;
+            bottom: 0;
+            width: 2px;
+            background: var(--line);
+        }
+
+        .timeline-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: white;
+            background: var(--primary);
+            z-index: 1;
+        }
+
+        .timeline-content h3 {
+            font-size: 15px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .timeline-date {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .chat {
+            display: grid;
+            gap: 14px;
+            max-height: 420px;
+            overflow: auto;
+            padding-right: 4px;
+        }
+
+        .message {
+            max-width: 88%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            line-height: 1.5;
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .message.admin {
+            background: #eef4fb;
+            border: 1px solid #d5e4f3;
+        }
+
+        .message.client {
+            margin-left: auto;
+            background: var(--primary);
+            color: white;
+        }
+
+        .message-meta {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            opacity: 0.75;
+            margin-bottom: 6px;
+        }
+
+        .reply-form {
+            display: grid;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 104px;
+            resize: vertical;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--ink);
+            background: white;
+        }
+
+        textarea:focus,
+        input:focus {
+            outline: 3px solid rgba(201, 162, 39, 0.22);
+            border-color: var(--accent);
+        }
+
+        .case-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .case-row {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: left;
+            background: white;
+            cursor: pointer;
+        }
+
+        .case-row.active {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .case-row strong,
+        .case-row span {
+            display: block;
+            overflow-wrap: anywhere;
+        }
+
+        .case-row strong {
+            color: var(--primary);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .case-row span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .empty {
+            color: var(--muted);
+            line-height: 1.6;
+            text-align: center;
+            padding: 32px 16px;
+        }
+
+        .notice {
+            border-left: 4px solid var(--accent);
+            background: var(--accent-soft);
+            padding: 14px;
+            border-radius: 8px;
+            color: #574312;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        @media (max-width: 940px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .side {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .topbar {
+                height: auto;
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 16px;
+            }
+
+            .top-actions {
+                width: 100%;
+            }
+
+            .top-actions .btn {
+                flex: 1;
+            }
+
+            .layout {
+                padding: 16px;
+            }
+
+            .case-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-cell {
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .summary-cell:last-child {
+                border-bottom: 0;
+            }
+
+            .panel-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .message {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-mark">Z</div>
+            <div>
+                <h1>Client Portal</h1>
+                <p id="clientName">ZYA Law Firm</p>
+            </div>
+        </div>
+        <div class="top-actions">
+            <a class="btn btn-ghost" href="index.html"><i class="fas fa-arrow-left"></i> Website</a>
+            <button class="btn btn-primary" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Logout</button>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="main">
+            <article class="panel" id="casePanel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Case Overview</h2>
+                    </div>
+                    <span class="status-badge" id="caseStatus">Loading</span>
+                </div>
+                <div class="case-summary">
+                    <div class="summary-cell">
+                        <span class="summary-label">Service</span>
+                        <span class="summary-value" id="caseService">-</span>
+                    </div>
+                    <div class="summary-cell">
+                        <span class="summary-label">Last Updated</span>
+                        <span class="summary-value" id="caseUpdated">-</span>
+                    </div>
+                    <div class="summary-cell">
+                        <span class="summary-label">Case Number</span>
+                        <span class="summary-value" id="caseNumber">-</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <h2>Timeline</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="timeline" id="timeline">
+                        <div class="empty">Loading timeline...</div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <aside class="side">
+            <article class="panel">
+                <div class="panel-header">
+                    <h2>Messages</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="chat" id="chat">
+                        <div class="empty">Loading messages...</div>
+                    </div>
+                    <form class="reply-form" id="messageForm">
+                        <textarea id="messageInput" placeholder="Write a message..." required></textarea>
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <h2>All Cases</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="case-list" id="caseList">
+                        <div class="empty">Loading cases...</div>
+                    </div>
+                </div>
+            </article>
+
+            <div class="notice">
+                For urgent immigration matters, call ZYA Law Firm directly at +1 (226) 505-2867.
+            </div>
+        </aside>
+    </main>
+
+    <script>
+        const API_URL = window.location.protocol === 'file:' || window.location.port === '5500'
+            ? 'http://localhost:5000/api'
+            : `${window.location.origin}/api`;
+
+        const token = localStorage.getItem('clientToken');
+        const clientName = localStorage.getItem('clientName');
+        let activeCaseId = null;
+        let portalData = null;
+
+        const serviceLabels = {
+            'work-visa': 'Work Visa',
+            'study-permit': 'Study Permit',
+            'family-sponsorship': 'Family Sponsorship',
+            'express-entry': 'Express Entry',
+            'citizenship': 'Citizenship',
+            'deportation': 'Deportation Defence'
+        };
+
+        const statusLabels = {
+            submitted: 'Submitted',
+            under_review: 'Under Review',
+            documents_needed: 'Documents Needed',
+            in_progress: 'In Progress',
+            decision_made: 'Decision Made',
+            closed: 'Closed'
+        };
+
+        if (!token) {
+            window.location.href = 'client-login.html';
+        }
+
+        if (clientName) {
+            document.getElementById('clientName').textContent = clientName;
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('clientToken');
+            localStorage.removeItem('clientName');
+            window.location.href = 'client-login.html';
+        });
+
+        document.getElementById('messageForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const input = document.getElementById('messageInput');
+            const content = input.value.trim();
+
+            if (!content || !activeCaseId) return;
+
+            try {
+                const response = await fetch(`${API_URL}/client/message`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ caseId: activeCaseId, content })
+                });
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Message failed.');
+                }
+
+                input.value = '';
+                await loadPortal();
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+
+        async function loadPortal() {
+            try {
+                const response = await fetch(`${API_URL}/client/case`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.status === 401 || response.status === 403) {
+                    localStorage.removeItem('clientToken');
+                    window.location.href = 'client-login.html';
+                    return;
+                }
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.message || 'Could not load portal.');
+                }
+
+                portalData = data;
+                activeCaseId = activeCaseId || data.case?.id || null;
+                renderPortal();
+            } catch (error) {
+                document.querySelector('.layout').innerHTML = `<div class="panel"><div class="empty">${escapeHtml(error.message)}</div></div>`;
+            }
+        }
+
+        function renderPortal() {
+            if (!portalData.case) {
+                document.getElementById('casePanel').innerHTML = '<div class="empty">No case has been created yet.</div>';
+                document.getElementById('timeline').innerHTML = '<div class="empty">Your timeline will appear after a case is created.</div>';
+                document.getElementById('chat').innerHTML = '<div class="empty">Messages will appear after a case is created.</div>';
+                document.getElementById('messageForm').style.display = 'none';
+                document.getElementById('caseList').innerHTML = '<div class="empty">No cases yet.</div>';
+                return;
+            }
+
+            const activeCase = portalData.cases.find(item => item.id === activeCaseId) || portalData.case;
+            activeCaseId = activeCase.id;
+
+            document.getElementById('caseStatus').textContent = statusLabels[activeCase.status] || activeCase.status;
+            document.getElementById('caseService').textContent = serviceLabels[activeCase.service_type] || activeCase.service_type;
+            document.getElementById('caseUpdated').textContent = formatDate(activeCase.updated_at);
+            document.getElementById('caseNumber').textContent = `ZYA-${String(activeCase.id).padStart(5, '0')}`;
+
+            renderCases(activeCaseId);
+            renderTimeline(activeCaseId);
+            renderMessages(activeCaseId);
+        }
+
+        function renderCases(selectedCaseId) {
+            document.getElementById('caseList').innerHTML = portalData.cases.map(item => `
+                <button class="case-row ${item.id === selectedCaseId ? 'active' : ''}" type="button" onclick="selectCase(${item.id})">
+                    <strong>${escapeHtml(serviceLabels[item.service_type] || item.service_type)}</strong>
+                    <span>${escapeHtml(statusLabels[item.status] || item.status)} - ${formatDate(item.updated_at)}</span>
+                </button>
+            `).join('');
+        }
+
+        function renderTimeline(caseId) {
+            const updates = portalData.updates.filter(item => item.case_id === caseId);
+
+            if (updates.length === 0) {
+                document.getElementById('timeline').innerHTML = '<div class="empty">No timeline updates yet.</div>';
+                return;
+            }
+
+            document.getElementById('timeline').innerHTML = updates.map(update => `
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="fas fa-check"></i></div>
+                    <div class="timeline-content">
+                        <h3>${escapeHtml(statusLabels[update.new_status] || update.new_status)}</h3>
+                        <p>${escapeHtml(update.note || 'Case status updated.')}</p>
+                        <span class="timeline-date">${formatDateTime(update.created_at)}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderMessages(caseId) {
+            const messages = portalData.messages.filter(item => item.case_id === caseId);
+
+            if (messages.length === 0) {
+                document.getElementById('chat').innerHTML = '<div class="empty">No messages yet.</div>';
+                return;
+            }
+
+            document.getElementById('chat').innerHTML = messages.map(message => `
+                <div class="message ${message.sender_type}">
+                    <span class="message-meta">${message.sender_type === 'client' ? 'You' : 'ZYA Law'} - ${formatDateTime(message.created_at)}</span>
+                    ${escapeHtml(message.content)}
+                </div>
+            `).join('');
+
+            const chat = document.getElementById('chat');
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function selectCase(caseId) {
+            activeCaseId = caseId;
+            renderPortal();
+        }
+
+        function formatDate(value) {
+            return new Date(value).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+
+        function formatDateTime(value) {
+            return new Date(value).toLocaleString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit'
+            });
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            })[char]);
+        }
+
+        loadPortal();
+    </script>
+</body>
+</html>
