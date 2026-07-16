@@ -1,24 +1,44 @@
-const mysql = require('mysql2/promise');
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
 
-const pool = mysql.createPool({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'zyalaw_db',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+// Create database file in the backend folder
+const dbPath = path.join(__dirname, '..', 'database.sqlite');
+
+const db = new sqlite3.Database(dbPath, (err) => {
+    if (err) {
+        console.error('❌ SQLite Database Error:', err.message);
+    } else {
+        console.log('✅ SQLite Database Connected Successfully!');
+        console.log('📁 Database file:', dbPath);
+    }
 });
 
-// Test connection
-pool.getConnection()
-    .then(connection => {
-        console.log('✅ MySQL Database Connected Successfully!');
-        connection.release();
-    })
-    .catch(err => {
-        console.error('❌ MySQL Connection Failed:', err.message);
-        console.log('💡 Make sure XAMPP MySQL is running!');
+// Promisify db methods for async/await support
+db.runAsync = function(sql, params = []) {
+    return new Promise((resolve, reject) => {
+        this.run(sql, params, function(err) {
+            if (err) reject(err);
+            else resolve({ id: this.lastID, changes: this.changes });
+        });
     });
+};
 
-module.exports = pool;
+db.getAsync = function(sql, params = []) {
+    return new Promise((resolve, reject) => {
+        this.get(sql, params, (err, row) => {
+            if (err) reject(err);
+            else resolve(row);
+        });
+    });
+};
+
+db.allAsync = function(sql, params = []) {
+    return new Promise((resolve, reject) => {
+        this.all(sql, params, (err, rows) => {
+            if (err) reject(err);
+            else resolve(rows);
+        });
+    });
+};
+
+module.exports = db;

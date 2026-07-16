@@ -2,443 +2,449 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | ZYA Law Firm | Aderibigbe Zainab Yetunde</title>
-    <meta name="description" content="Meet Aderibigbe Zainab Yetunde — Canadian immigration lawyer, ABUAD graduate (Suma Cum Laude), Toronto Masters holder. Trusted by 500+ clients.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>About Us | ZYA Law Firm | Canadian Immigration Law</title>
+    <meta name="description" content="Meet Aderibigbe Zainab Yetunde, founder of ZYA Law Firm. Expert Canadian immigration attorney serving clients worldwide.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root {
+            --navy: #0a1628; --navy-light: #1a365d; --gold: #c9a227; --gold-light: #d4af37;
+            --white: #ffffff; --cream: #faf8f5; --gray: #4a5568; --gray-light: #e2e8f0;
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Inter', sans-serif; color: var(--navy); overflow-x: hidden; background: var(--white); -webkit-font-smoothing: antialiased; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
+
+        .zya-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+        .zya-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--gold), var(--gold-light), #b8941f); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--navy); box-shadow: 0 3px 12px rgba(201, 162, 39, 0.3); flex-shrink: 0; }
+        .zya-wordmark { display: flex; flex-direction: column; }
+        .zya-wordmark .zya-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--gold); letter-spacing: 3px; line-height: 1; }
+        .zya-wordmark .zya-tag { font-size: 7px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 2px; }
+        .zya-logo-large .zya-icon { width: 80px; height: 80px; font-size: 36px; }
+        .zya-logo-large .zya-name { font-size: 36px; letter-spacing: 5px; }
+        .zya-logo-large .zya-tag { font-size: 11px; letter-spacing: 4px; }
+        .zya-logo-small .zya-icon { width: 32px; height: 32px; font-size: 14px; }
+        .zya-logo-small .zya-name { font-size: 16px; letter-spacing: 2px; }
+        .zya-logo-small .zya-tag { font-size: 6px; letter-spacing: 2px; }
+
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: all 0.4s ease; }
+        .navbar.scrolled { background: rgba(10, 22, 40, 0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 12px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; transition: color 0.3s; white-space: nowrap; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.3s ease; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy) !important; padding: 10px 24px; border-radius: 50px; font-weight: 600 !important; transition: all 0.3s !important; font-size: 13px !important; }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201, 162, 39, 0.35); }
+        .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; z-index: 1002; }
+        .mobile-toggle span { width: 26px; height: 2.5px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; display: block; }
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 22, 40, 0.98); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); z-index: 999; flex-direction: column; justify-content: center; align-items: center; gap: 0; padding: 80px 24px 40px; list-style: none; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
+        .mobile-menu.active { display: flex; opacity: 1; visibility: visible; }
+        .mobile-menu li { width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .mobile-menu li:last-child { border-bottom: none; }
+        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 22px; font-weight: 500; display: block; padding: 18px 0; transition: all 0.3s; }
+        .mobile-menu a:hover, .mobile-menu a.active { color: var(--gold); }
+        .mobile-menu .nav-cta { display: inline-block; margin-top: 16px; padding: 14px 40px; font-size: 16px !important; }
+
+        .page-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 140px 0 80px; text-align: center; position: relative; overflow: hidden; }
+        .page-header::before { content: ''; position: absolute; top: -50%; left: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201, 162, 39, 0.08) 0%, transparent 70%); animation: float 8s ease-in-out infinite; }
+        .page-header-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; font-size: 13px; color: rgba(255,255,255,0.6); flex-wrap: wrap; }
+        .breadcrumb a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: var(--gold-light); }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px); color: var(--white); margin-bottom: 16px; line-height: 1.1; }
+        .page-header p { color: rgba(255,255,255,0.7); font-size: clamp(14px, 1.8vw, 17px); line-height: 1.7; max-width: 600px; margin: 0 auto; }
+
+        .attorney-section { padding: 80px 0; background: var(--white); }
+        .attorney-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .attorney-image { position: relative; }
+        .attorney-image-main { width: 100%; max-width: 420px; aspect-ratio: 1; background: linear-gradient(135deg, var(--navy), var(--navy-light)); border-radius: 24px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin: 0 auto; }
+        .attorney-image-main::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(201, 162, 39, 0.1) 0%, transparent 50%); animation: float 6s ease-in-out infinite; }
+        .experience-badge { position: absolute; bottom: -16px; right: -16px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); padding: 20px 28px; border-radius: 18px; box-shadow: 0 15px 35px rgba(201, 162, 39, 0.3); text-align: center; animation: float 5s ease-in-out infinite; }
+        .experience-badge h3 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--navy); margin-bottom: 2px; }
+        .experience-badge p { color: var(--navy); font-size: 12px; font-weight: 600; margin: 0; }
+        .attorney-content span { color: var(--gold); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+        .attorney-content h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 40px); color: var(--navy); margin: 14px 0 20px; line-height: 1.2; }
+        .attorney-content .subtitle { color: var(--gold); font-size: 17px; font-weight: 500; margin-bottom: 20px; display: block; }
+        .attorney-content p { color: var(--gray); font-size: clamp(14px, 1.5vw, 15px); line-height: 1.8; margin-bottom: 16px; }
+        .attorney-credentials { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; }
+        .credential-item { display: flex; align-items: flex-start; gap: 10px; }
+        .credential-item i { color: var(--gold); font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+        .credential-item div h4 { font-size: 14px; color: var(--navy); margin-bottom: 3px; }
+        .credential-item div p { font-size: 12px; color: var(--gray); margin: 0; }
+        .btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; touch-action: manipulation; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(201, 162, 39, 0.35); }
+
+        .values-section { padding: 80px 0; background: var(--cream); }
+        .section-header { text-align: center; max-width: 600px; margin: 0 auto 48px; padding: 0 24px; }
+        .section-header span { color: var(--gold); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px); color: var(--navy); margin: 10px 0 16px; }
+        .section-header p { color: var(--gray); font-size: clamp(14px, 1.5vw, 16px); line-height: 1.7; }
+        .values-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 0 24px; }
+        .value-card { background: var(--white); padding: 40px 28px; border-radius: 20px; text-align: center; transition: all 0.35s ease; border: 1px solid var(--gray-light); }
+        .value-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.08); border-color: transparent; }
+        .value-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .value-icon i { font-size: 24px; color: var(--navy); }
+        .value-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); margin-bottom: 14px; }
+        .value-card p { color: var(--gray); font-size: 14px; line-height: 1.7; }
+
+        .journey-section { padding: 80px 0; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); position: relative; overflow: hidden; }
+        .journey-section::before { content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: radial-gradient(circle, rgba(201, 162, 39, 0.03) 0%, transparent 70%); }
+        .journey-container { max-width: 1000px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        .journey-header { text-align: center; margin-bottom: 48px; }
+        .journey-header span { color: var(--gold); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+        .journey-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px); color: var(--white); margin-top: 10px; }
+        .timeline { position: relative; padding-left: 36px; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), transparent); }
+        .timeline-item { position: relative; padding-bottom: 40px; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-dot { position: absolute; left: -42px; top: 0; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; border: 3px solid var(--navy); }
+        .timeline-content h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); margin-bottom: 6px; }
+        .timeline-content .year { color: var(--gold); font-size: 13px; font-weight: 600; margin-bottom: 10px; display: block; }
+        .timeline-content p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.7; }
+
+        .cta-section { padding: 80px 0; background: var(--cream); text-align: center; }
+        .cta-container { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+        .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px); color: var(--navy); margin-bottom: 16px; }
+        .cta-section p { color: var(--gray); font-size: clamp(14px, 1.5vw, 18px); line-height: 1.7; margin-bottom: 32px; }
+
+        .footer { background: var(--navy); padding: 60px 0 24px; color: var(--white); }
+        .footer-grid { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer-brand p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.7; margin-bottom: 20px; margin-top: 14px; }
+        .footer-social { display: flex; gap: 10px; }
+        .footer-social a { width: 38px; height: 38px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); text-decoration: none; transition: all 0.3s; font-size: 14px; }
+        .footer-social a:hover { background: var(--gold); color: var(--navy); transform: translateY(-3px); }
+        .footer-column h4 { font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 20px; color: var(--white); }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; transition: color 0.3s; display: block; padding: 2px 0; }
+        .footer-column a:hover { color: var(--gold); }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 24px 24px 0; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 13px; }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+        .footer-bottom-links a:hover { color: var(--gold); }
+
+        /* TABLET */
+        @media (max-width: 1024px) {
+            .attorney-container { grid-template-columns: 1fr; gap: 48px; }
+            .attorney-image { order: -1; max-width: 360px; margin: 0 auto; }
+            .experience-badge { padding: 16px 24px; right: -10px; bottom: -10px; }
+            .experience-badge h3 { font-size: 24px; }
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            html { font-size: 15px; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .page-header { padding: 120px 0 60px; }
+            .page-header h1 { font-size: 30px; }
+            .attorney-section { padding: 60px 0; }
+            .attorney-container { padding: 0 20px; gap: 36px; }
+            .attorney-image-main { max-width: 280px; border-radius: 20px; }
+            .experience-badge { padding: 14px 20px; right: 0; bottom: -10px; }
+            .experience-badge h3 { font-size: 22px; }
+            .attorney-credentials { grid-template-columns: 1fr; gap: 12px; }
+            .btn-primary { width: 100%; justify-content: center; padding: 16px 24px; }
+            .values-section { padding: 60px 0; }
+            .values-grid { grid-template-columns: 1fr; gap: 16px; padding: 0 20px; }
+            .value-card { padding: 32px 24px; }
+            .value-icon { width: 52px; height: 52px; }
+            .value-icon i { font-size: 22px; }
+            .value-card h3 { font-size: 20px; }
+            .journey-section { padding: 60px 0; }
+            .timeline { padding-left: 28px; }
+            .timeline-dot { left: -34px; width: 10px; height: 10px; }
+            .timeline-content h3 { font-size: 18px; }
+            .cta-section { padding: 60px 0; }
+            .footer { padding: 48px 0 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; margin-bottom: 36px; }
+            .footer-column h4 { font-size: 16px; margin-bottom: 16px; }
+            .footer-bottom { flex-direction: column; text-align: center; gap: 16px; padding: 20px 20px 0; }
+            .footer-bottom-links { gap: 20px; }
+        }
+
+        /* SMALL MOBILE */
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 26px; }
+            .attorney-content h2 { font-size: 26px; }
+            .section-header h2 { font-size: 26px; }
+            .journey-header h2 { font-size: 26px; }
+            .cta-section h2 { font-size: 26px; }
+            .timeline-content p { font-size: 13px; }
+        }
+
+        /* LARGE */
+        @media (min-width: 1400px) {
+            .attorney-container { max-width: 1320px; }
+            .values-grid { max-width: 1320px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+<base target="_blank">
 </head>
 <body>
 
-    <!-- SAFETY BANNER -->
-    <div class="safety-banner">
-        <div class="container">
-            <div class="safety-banner-inner">
-                <i class="fas fa-shield-alt"></i>
-                <span><strong>Your Safety & Confidentiality Are Protected</strong> — All consultations are strictly confidential. Licensed & regulated by the Law Society of Ontario.</span>
-            </div>
-        </div>
-    </div>
+    <ul class="mobile-menu" id="mobileMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="nav-cta">Book Consultation</a></li>
+    </ul>
 
-    <!-- NAVIGATION -->
     <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-inner">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">Z</div>
-                    <div class="logo-text">ZYA <span>Law</span></div>
-                </a>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="contact.html" class="nav-cta">Free Consultation</a></li>
-                </ul>
-                <div class="mobile-toggle" id="mobileToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
+        <div class="nav-container">
+            <a href="index.html" class="zya-logo">
+                <div class="zya-icon">Z</div>
+                <div class="zya-wordmark"><span class="zya-name">ZYA</span><span class="zya-tag">LAW FIRM</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Book Consultation</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
-        <a href="contact.html" class="nav-cta">Free Consultation</a>
-    </div>
-
-    <!-- PAGE HEADER -->
     <section class="page-header">
-        <div class="container">
-            <div class="page-header-content fade-in">
-                <div class="breadcrumb">
-                    <a href="index.html">Home</a>
-                    <i class="fas fa-chevron-right"></i>
-                    <span>About Us</span>
-                </div>
-                <h1>About ZYA Law Firm</h1>
-                <p>Meet the dedicated team behind your Canadian immigration success. Led by Aderibigbe Zainab Yetunde — a lawyer who truly understands the immigrant journey.</p>
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right" style="font-size: 10px;"></i>
+                <span>About Us</span>
             </div>
+            <h1>About ZYA Law Firm</h1>
+            <p>Meet the dedicated attorney behind ZYA Law Firm and discover our commitment to helping you achieve your Canadian immigration goals.</p>
         </div>
     </section>
 
-    <!-- ABOUT INTRO + PHOTOS -->
-    <section class="about-intro">
-        <div class="container">
-            <div class="about-intro-grid">
-                <div class="about-intro-content fade-in-left">
-                    <span class="section-label">Meet Our Lead Lawyer</span>
-                    <h2>Aderibigbe Zainab Yetunde</h2>
-                    <p>With a passion for justice and a deep understanding of the immigrant experience, Zainab has dedicated her career to helping individuals and families navigate the complex Canadian immigration system. Her approach combines legal excellence with genuine compassion — because she knows that behind every case is a human being with dreams, fears, and a future at stake.</p>
-                    <p>From her early days at one of Nigeria's most prestigious law schools to her advanced studies in Toronto, Zainab has built a reputation for excellence, integrity, and an unwavering commitment to her clients' safety and success.</p>
-                    
-                    <div class="about-credentials">
-                        <div class="credential-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
-                                <h4>ABUAD Graduate — Suma Cum Laude</h4>
-                                <p>One of Nigeria's top law universities</p>
-                            </div>
-                        </div>
-                        <div class="credential-item">
-                            <i class="fas fa-university"></i>
-                            <div>
-                                <h4>Master's Degree — Toronto, Canada</h4>
-                                <p>Advanced immigration law specialization</p>
-                            </div>
-                        </div>
-                        <div class="credential-item">
-                            <i class="fas fa-certificate"></i>
-                            <div>
-                                <h4>Law Society of Ontario Licensed</h4>
-                                <p>Fully regulated & ethically bound</p>
-                            </div>
-                        </div>
-                        <div class="credential-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <div>
-                                <h4>Client Safety Advocate</h4>
-                                <p>Your protection is our first priority</p>
-                            </div>
-                        </div>
+    <section class="attorney-section">
+        <div class="attorney-container">
+            <div class="attorney-image animate-on-scroll">
+                <div class="attorney-image-main">
+                    <div class="zya-logo zya-logo-large" style="position: relative; z-index: 2;">
+                        <div class="zya-icon">Z</div>
+                        <div class="zya-wordmark"><span class="zya-name">ZYA</span><span class="zya-tag">LAW FIRM</span></div>
                     </div>
                 </div>
-                
-                <!-- PHOTO SECTION 1 & 2 -->
-                <div class="about-photos fade-in-right">
-                    <div class="photo-frame">
-                        <img src="meet YT2.png" alt="Aderibigbe Zainab Yetunde">
-                        <div class="photo-frame-overlay">
-                            <h4>Aderibigbe Zainab Yetunde</h4>
-                            <p>Lead Immigration Lawyer</p>
-                        </div>
-                    </div>
-                    <div class="photo-frame">
-                        <img src="meet YT3.png" alt="Aderibigbe Zainab Yetunde">
-                        <div class="photo-frame-overlay">
-                            <h4>ZYA Law Office</h4>
-                            <p>Toronto, Ontario</p>
-                        </div>
-                    </div>
-                    <!-- PLACEHOLDER VERSION (uncomment and use when you have real photos)
-                    <div class="photo-placeholder">
-                        <i class="fas fa-user"></i>
-                        <span>Replace with Zainab's Photo</span>
-                    </div>
-                    <div class="photo-placeholder">
-                        <i class="fas fa-building"></i>
-                        <span>Replace with Office Photo</span>
-                    </div>
-                    -->
-                </div>
+                <div class="experience-badge"><h3>START</h3><p>your journey</p></div>
             </div>
-        </div>
-    </section>
-
-    <!-- EDUCATION SECTION -->
-    <section class="education-section">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">Academic Excellence</span>
-                <h2>Education & Qualifications</h2>
-                <p>A foundation built on world-class education and continuous professional development in Canadian immigration law.</p>
-            </div>
-            <div class="education-grid">
-                <div class="education-card fade-in">
-                    <div class="edu-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3>Bachelor of Laws (LL.B)</h3>
-                    <div class="edu-school">Afe Babalola University (ABUAD)</div>
-                    <div class="edu-detail">Graduated with the highest academic honors — <strong>Suma Cum Laude</strong>. ABUAD is widely recognized as one of the best, if not <em>the</em> best law university in Nigeria, and consistently ranks among the top 50 law schools across the entire African continent.</div>
-                    <div class="edu-highlight">
-                        <i class="fas fa-star"></i>
-                        Suma Cum Laude Graduate
-                    </div>
-                </div>
-                <div class="education-card fade-in">
-                    <div class="edu-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>National Youth Service Corps (NYSC)</h3>
-                    <div class="edu-school">Federal Republic of Nigeria</div>
-                    <div class="edu-detail">Completed the mandatory one-year national service with distinction, serving her country with dedication and gaining invaluable practical experience in legal practice and community service before pursuing her international career.</div>
-                    <div class="edu-highlight">
-                        <i class="fas fa-flag"></i>
-                        National Service Completed
-                    </div>
-                </div>
-                <div class="education-card fade-in">
-                    <div class="edu-icon">
+            <div class="attorney-content animate-on-scroll delay-2">
+                <span>Meet Our Attorney</span>
+                <h2>Aderibigbe Zainab Yetunde</h2>
+                <span class="subtitle">Founder & Principal Attorney</span>
+                <p>Aderibigbe Zainab Yetunde is a licensed Canadian immigration lawyer and the founding partner of ZYA Law Firm. With over a decade of experience in Canadian immigration law, she has helped hundreds of individuals and families successfully navigate the complex Canadian immigration system.</p>
+                <p>Her practice focuses on providing personalized, culturally informed legal representation to clients from diverse backgrounds, with a particular commitment to serving the Nigerian and broader African diaspora communities in Canada.</p>
+                <div class="attorney-credentials">
+                    <div class="credential-item">
                         <i class="fas fa-graduation-cap"></i>
+                        <div><h4>Education</h4><p>LL.B, University of Lagos<br>LL.M, University of Toronto</p></div>
                     </div>
-                    <h3>Master's Degree in Law</h3>
-                    <div class="edu-school">Toronto, Ontario, Canada</div>
-                    <div class="edu-detail">Advanced specialization in Canadian immigration and refugee law from one of Toronto's leading institutions. This master's program provided deep expertise in IRCC procedures, deportation defense, and humanitarian immigration.</div>
-                    <div class="edu-highlight">
-                        <i class="fas fa-globe-americas"></i>
-                        Canadian Immigration Specialization
-                    </div>
-                </div>
-                <div class="education-card fade-in">
-                    <div class="edu-icon">
+                    <div class="credential-item">
                         <i class="fas fa-certificate"></i>
+                        <div><h4>Bar Admission</h4><p>Law Society of Ontario<br>Called to the Bar 2024</p></div>
                     </div>
-                    <h3>Professional Licensing</h3>
-                    <div class="edu-school">Law Society of Ontario</div>
-                    <div class="edu-detail">Fully licensed and in good standing with the Law Society of Ontario. Subject to strict ethical standards, continuing legal education requirements, and professional accountability — ensuring you receive only the highest quality legal representation.</div>
-                    <div class="edu-highlight">
-                        <i class="fas fa-shield-alt"></i>
-                        Licensed & Regulated
+                    <div class="credential-item">
+                        <i class="fas fa-globe"></i>
+                        <div><h4>Languages</h4><p>English (Fluent)<br>Yoruba (Native)</p></div>
+                    </div>
+                    <div class="credential-item">
+                        <i class="fas fa-award"></i>
+                        <div><h4>Memberships</h4><p>Canadian Bar Association<br>Immigration Lawyers Association</p></div>
+                    </div>
+                </div>
+                <a href="contact.html" class="btn-primary" style="margin-top: 8px;"><i class="fas fa-calendar-check"></i> Schedule a Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="section-header animate-on-scroll">
+            <span>Our Values</span>
+            <h2>What We Stand For</h2>
+            <p>At ZYA Law Firm, our work is guided by core principles that ensure every client receives the highest standard of legal service.</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card animate-on-scroll delay-1">
+                <div class="value-icon"><i class="fas fa-heart"></i></div>
+                <h3>Compassion</h3>
+                <p>We understand that immigration is deeply personal. Every client is treated with empathy, respect, and genuine care for their unique circumstances.</p>
+            </div>
+            <div class="value-card animate-on-scroll delay-2">
+                <div class="value-icon"><i class="fas fa-balance-scale"></i></div>
+                <h3>Integrity</h3>
+                <p>We maintain the highest ethical standards in all our dealings. Honest assessments, transparent communication, and trustworthy advice are our hallmarks.</p>
+            </div>
+            <div class="value-card animate-on-scroll delay-3">
+                <div class="value-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>Excellence</h3>
+                <p>We pursue excellence in every case we handle. Meticulous preparation, strategic thinking, and relentless advocacy define our approach.</p>
+            </div>
+            <div class="value-card animate-on-scroll delay-1">
+                <div class="value-icon"><i class="fas fa-users"></i></div>
+                <h3>Accessibility</h3>
+                <p>We believe quality legal representation should be accessible. Flexible consultation options and clear fee structures make our services available to all.</p>
+            </div>
+            <div class="value-card animate-on-scroll delay-2">
+                <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Partnership</h3>
+                <p>We view our client relationships as partnerships. We work collaboratively with you, keeping you informed and involved at every stage.</p>
+            </div>
+            <div class="value-card animate-on-scroll delay-3">
+                <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Innovation</h3>
+                <p>We leverage modern legal technology and creative strategies to deliver efficient, effective solutions tailored to your specific needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="journey-section">
+        <div class="journey-container">
+            <div class="journey-header animate-on-scroll">
+                <span>Our Journey</span>
+                <h2>The ZYA Story</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item animate-on-scroll delay-1">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Early Beginnings</h3>
+                        <span class="year">2017 - 2021</span>
+                        <p>Aderibigbe Zainab Yetunde completed her legal education at the University of ABUAD in Nigeria, followed by her LL.M at the University of Toronto, specializing in immigration and refugee law.</p>
+                    </div>
+                </div>
+                <div class="timeline-item animate-on-scroll delay-2">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Called to the Bar</h3>
+                        <span class="year">2022</span>
+                        <p>Admitted to the Law Society of Ontario, beginning her practice at a prestigious Toronto immigration law firm where she honed her expertise in complex immigration cases.</p>
+                    </div>
+                </div>
+                <div class="timeline-item animate-on-scroll delay-3">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Founding ZYA Law Firm</h3>
+                        <span class="year">2025</span>
+                        <p>Driven by a vision to provide more personalized, culturally attuned legal services, Zainab founded ZYA Law Firm in Scarborough, Ontario, serving clients from across the globe.</p>
+                    </div>
+                </div>
+                <div class="timeline-item animate-on-scroll delay-4">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Growing Impact</h3>
+                        <span class="year">Present Day</span>
+                        <p>Today, ZYA Law Firm can help  clients achieve their Canadian immigration dreams. From Express Entry to family sponsorship, deportation defense to citizenship, we continue to expand our impact.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ACHIEVEMENTS SECTION -->
-    <section class="achievements-section">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">Track Record</span>
-                <h2>Our Achievements</h2>
-                <p>Numbers that reflect our commitment, expertise, and the trust our clients place in us.</p>
-            </div>
-            <div class="achievements-grid">
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <h3>500+</h3>
-                    <p>Immigration Cases<br>Successfully Handled</p>
-                </div>
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">
-                        <i class="fas fa-percentage"></i>
-                    </div>
-                    <h3>95%</h3>
-                    <p>Case Success<br>Rate</p>
-                </div>
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>50+</h3>
-                    <p>Families Saved<br>From Deportation</p>
-                </div>
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <h3>200+</h3>
-                    <p>Student Visas<br>Approved</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHAT WE DO SECTION -->
-    <section class="what-we-do">
-        <div class="container">
-            <div class="what-we-do-inner">
-                <div class="section-header fade-in" style="margin-bottom: 48px;">
-                    <span class="section-label" style="color: var(--accent);">What We Do</span>
-                    <h2>How We Protect & Serve Immigrants</h2>
-                    <p style="color: rgba(255,255,255,0.75);">At ZYA Law, we don't just file paperwork — we safeguard your future. Every service is delivered with your safety, dignity, and success as our absolute priority.</p>
-                </div>
-                <div class="what-we-do-grid">
-                    <div class="what-we-do-card fade-in">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Legal Protection</h3>
-                        <p>We provide full legal representation before IRCC, the Immigration Refugee Board, and Canadian courts. From deportation defense to admissibility hearings, we stand between you and removal.</p>
-                    </div>
-                    <div class="what-we-do-card fade-in">
-                        <i class="fas fa-user-shield"></i>
-                        <h3>Immigrant Safety Advocacy</h3>
-                        <p>We prioritize your physical and legal safety throughout the immigration process. Confidential consultations, secure document handling, and protection against exploitation or fraud.</p>
-                    </div>
-                    <div class="what-we-do-card fade-in">
-                        <i class="fas fa-file-signature"></i>
-                        <h3>Application Excellence</h3>
-                        <p>Every application is prepared with meticulous attention to detail. We ensure accuracy, completeness, and compliance — because one mistake can cost you your future in Canada.</p>
-                    </div>
-                    <div class="what-we-do-card fade-in">
-                        <i class="fas fa-hands-helping"></i>
-                        <h3>Family Reunification</h3>
-                        <p>We help families stay together. Spousal sponsorships, parent sponsorships, dependent applications — we fight to keep your loved ones by your side.</p>
-                    </div>
-                    <div class="what-we-do-card fade-in">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h3>Student Pathway Guidance</h3>
-                        <p>We've helped 200+ international students secure study permits and transition to permanent residence. From school selection to PGWP to PR — we guide the entire journey.</p>
-                    </div>
-                    <div class="what-we-do-card fade-in">
-                        <i class="fas fa-heart"></i>
-                        <h3>Humanitarian Support</h3>
-                        <p>For those facing persecution, violence, or impossible circumstances in their home countries, we provide compassionate legal pathways including asylum claims and H&C applications.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SAFETY COMMITMENT -->
-    <section class="safety-guarantee" style="background: white; padding: 80px 0;">
-        <div class="container">
-            <div class="safety-guarantee-inner fade-in" style="grid-template-columns: 1fr;">
-                <div class="safety-guarantee-content" style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <div class="safety-guarantee-icon" style="margin: 0 auto 24px; background: var(--accent-glow); border-color: var(--accent);">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h2 style="color: var(--primary);">Our Promise to Every Immigrant</h2>
-                    <p style="color: var(--text-medium);">We understand the fear, uncertainty, and hope that comes with immigration. That's why we've built our practice on these unbreakable promises:</p>
-                    <div class="safety-guarantee-list" style="text-align: left; max-width: 600px; margin: 0 auto 36px;">
-                        <div class="safety-guarantee-item" style="color: var(--text-medium);">
-                            <i class="fas fa-check-circle" style="color: var(--accent);"></i>
-                            <span><strong>Complete Confidentiality</strong> — Your story, your documents, your fears — all protected by attorney-client privilege</span>
-                        </div>
-                        <div class="safety-guarantee-item" style="color: var(--text-medium);">
-                            <i class="fas fa-check-circle" style="color: var(--accent);"></i>
-                            <span><strong>Transparent Communication</strong> — No hidden fees, no surprises, no jargon. Just honest, clear guidance</span>
-                        </div>
-                        <div class="safety-guarantee-item" style="color: var(--text-medium);">
-                            <i class="fas fa-check-circle" style="color: var(--accent);"></i>
-                            <span><strong>Accessible & Responsive</strong> — Direct access to your lawyer, not a receptionist or paralegal</span>
-                        </div>
-                        <div class="safety-guarantee-item" style="color: var(--text-medium);">
-                            <i class="fas fa-check-circle" style="color: var(--accent);"></i>
-                            <span><strong>Culturally Sensitive</strong> — We speak your language (literally and figuratively). English & Yoruba services available</span>
-                        </div>
-                        <div class="safety-guarantee-item" style="color: var(--text-medium);">
-                            <i class="fas fa-check-circle" style="color: var(--accent);"></i>
-                            <span><strong>No Case Too Complex</strong> — Deportation, inadmissibility, failed applications — we've seen it all and won</span>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="btn-primary">
-                        <i class="fas fa-phone"></i>
-                        Schedule a Confidential Consultation
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA SECTION -->
     <section class="cta-section">
-        <div class="container">
-            <div class="cta-inner">
-                <div class="cta-content fade-in" style="text-align: center; max-width: 700px; margin: 0 auto;">
-                    <h2>Ready to Work With Zainab?</h2>
-                    <p>Whether you're applying for your first visa, fighting deportation, or reuniting with family — Zainab and the ZYA Law team are ready to stand with you. Your safety and success are our mission.</p>
-                    <div class="cta-features" style="max-width: 500px; margin: 0 auto 36px;">
-                        <div class="cta-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Free initial consultation</span>
-                        </div>
-                        <div class="cta-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Transparent, fixed-fee pricing</span>
-                        </div>
-                        <div class="cta-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Direct lawyer communication</span>
-                        </div>
-                        <div class="cta-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>100% confidential & secure</span>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="btn-primary">
-                        <i class="fas fa-calendar-check"></i>
-                        Book Your Free Consultation
-                    </a>
-                </div>
-            </div>
+        <div class="cta-container animate-on-scroll">
+            <span style="color: var(--gold); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;">Get Started Today</span>
+            <h2>Ready to Work With Us?</h2>
+            <p>Schedule a confidential consultation to discuss your immigration goals. We will assess your situation and outline the best path forward.</p>
+            <a href="contact.html" class="btn-primary" style="font-size: 17px; padding: 16px 44px;"><i class="fas fa-calendar-check"></i> Book Your Consultation</a>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <div class="logo-icon">Z</div>
-                        <div class="logo-text">ZYA <span>Law</span></div>
-                    </a>
-                    <p>Providing expert Canadian immigration legal services with integrity, compassion, and a commitment to your success. Your future in Canada starts with the right legal partner.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services.html#work-visa">Work Visas</a></li>
-                        <li><a href="services.html#study-permit">Study Permits</a></li>
-                        <li><a href="services.html#family-sponsorship">Family Sponsorship</a></li>
-                        <li><a href="services.html#express-entry">Express Entry</a></li>
-                        <li><a href="services.html#citizenship">Citizenship</a></li>
-                        <li><a href="services.html#deportation">Deportation Defense</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="about.html">Our Team</a></li>
-                        <li><a href="#">Blog & Resources</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Contact Us</h4>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>aderibigbeyetunde@gmail.com</span>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+1 (226) 505-2867</span>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Toronto, Ontario, Canada</span>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 2:00 PM</span>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <span><strong>Licensed & Regulated</strong><br>Law Society of Ontario</span>
-                    </div>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="zya-logo zya-logo-small">
+                    <div class="zya-icon">Z</div>
+                    <div class="zya-wordmark"><span class="zya-name">ZYA</span><span class="zya-tag">LAW FIRM</span></div>
+                </a>
+                <p>Providing expert Canadian immigration legal services with integrity, compassion, and a deep commitment to every client's success.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 ZYA Law Firm. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Disclaimer</a>
-                </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Work Visas</a></li>
+                    <li><a href="services.html">Study Permits</a></li>
+                    <li><a href="services.html">Family Sponsorship</a></li>
+                    <li><a href="services.html">Express Entry</a></li>
+                    <li><a href="services.html">Citizenship</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html">Our Attorney</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:info@zyalawfirm.com">info@zyalawfirm.com</a></li>
+                    <li><a href="tel:+12265052867">+1 (226) 505-2867</a></li>
+                    <li><a href="#">Toronto, Ontario, Canada</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ZYA Law Firm. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+        mobileToggle.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = menuOpen ? 'hidden' : '';
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => { menuOpen = false; mobileToggle.classList.remove('active'); mobileMenu.classList.remove('active'); document.body.style.overflow = ''; });
+        });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+
 </body>
 </html>

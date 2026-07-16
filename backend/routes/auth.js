@@ -11,28 +11,28 @@ const db = require('../config/db');
 const setupAdmin = async () => {
     try {
         // Create table
-        await db.query(`
+        await db.runAsync(`
             CREATE TABLE IF NOT EXISTS users (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                username VARCHAR(50) UNIQUE NOT NULL,
-                password VARCHAR(255) NOT NULL,
-                role VARCHAR(20) DEFAULT 'admin',
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE NOT NULL,
+                password TEXT NOT NULL,
+                role TEXT DEFAULT 'admin',
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             )
         `);
 
         // Check if admin exists
-        const [existing] = await db.query('SELECT * FROM users WHERE username = ?', [process.env.ADMIN_USERNAME || 'zainab']);
+        const existing = await db.getAsync('SELECT * FROM users WHERE username = ?', [process.env.ADMIN_USERNAME || 'zainab']);
 
-        if (existing.length === 0) {
+        if (!existing) {
             // Hash password and create admin
             const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'zyalaw2026', 10);
-            
-            await db.query(
+
+            await db.runAsync(
                 'INSERT INTO users (username, password, role) VALUES (?, ?, ?)',
                 [process.env.ADMIN_USERNAME || 'zainab', hashedPassword, 'admin']
             );
-            
+
             console.log('✅ Default admin created!');
         } else {
             console.log('✅ Admin account already exists.');
@@ -59,16 +59,14 @@ router.post('/login', async (req, res) => {
         }
 
         // Find user
-        const [users] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
+        const user = await db.getAsync('SELECT * FROM users WHERE username = ?', [username]);
 
-        if (users.length === 0) {
+        if (!user) {
             return res.status(401).json({
                 success: false,
                 message: 'Invalid credentials.'
             });
         }
-
-        const user = users[0];
 
         // Check password
         const isMatch = await bcrypt.compare(password, user.password);

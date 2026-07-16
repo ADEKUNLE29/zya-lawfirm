@@ -3,79 +3,105 @@ const db = require('./db');
 let schemaReady;
 
 async function createSchema() {
-    await db.query(`
+    // Enable foreign keys
+    await db.runAsync('PRAGMA foreign_keys = ON');
+
+    // Create contacts table
+    await db.runAsync(`
         CREATE TABLE IF NOT EXISTS contacts (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            firstName VARCHAR(100) NOT NULL,
-            lastName VARCHAR(100) NOT NULL,
-            email VARCHAR(100) NOT NULL,
-            phone VARCHAR(20) NOT NULL,
-            language VARCHAR(20) DEFAULT 'english',
-            service VARCHAR(50) NOT NULL,
-            status VARCHAR(50) DEFAULT 'other',
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            firstName TEXT NOT NULL,
+            lastName TEXT NOT NULL,
+            email TEXT NOT NULL,
+            phone TEXT NOT NULL,
+            language TEXT DEFAULT 'english',
+            service TEXT NOT NULL,
+            status TEXT DEFAULT 'other',
             message TEXT,
-            contacted TINYINT(1) DEFAULT 0,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            contacted INTEGER DEFAULT 0,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     `);
 
-    await db.query(`
+    // Create clients table
+    await db.runAsync(`
         CREATE TABLE IF NOT EXISTS clients (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            contact_id INT NULL,
-            email VARCHAR(150) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            first_name VARCHAR(100) NOT NULL,
-            last_name VARCHAR(100) NOT NULL,
-            phone VARCHAR(30),
-            is_temp_password TINYINT(1) DEFAULT 1,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            INDEX idx_clients_contact (contact_id),
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            contact_id INTEGER NULL,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            first_name TEXT NOT NULL,
+            last_name TEXT NOT NULL,
+            phone TEXT,
+            is_temp_password INTEGER DEFAULT 1,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE SET NULL
         )
     `);
 
-    await db.query(`
+    // Create cases table
+    await db.runAsync(`
         CREATE TABLE IF NOT EXISTS cases (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            client_id INT NOT NULL,
-            contact_id INT NULL,
-            service_type VARCHAR(80) NOT NULL,
-            status VARCHAR(50) DEFAULT 'submitted',
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            INDEX idx_cases_client (client_id),
-            INDEX idx_cases_contact (contact_id),
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            client_id INTEGER NOT NULL,
+            contact_id INTEGER NULL,
+            service_type TEXT NOT NULL,
+            status TEXT DEFAULT 'submitted',
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE,
             FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE SET NULL
         )
     `);
 
-    await db.query(`
+    // Create trigger for updated_at
+    await db.runAsync(`
+        CREATE TRIGGER IF NOT EXISTS cases_updated_at
+        AFTER UPDATE ON cases
+        FOR EACH ROW
+        BEGIN
+            UPDATE cases SET updated_at = CURRENT_TIMESTAMP WHERE id = NEW.id;
+        END
+    `);
+
+    // Create case_updates table
+    await db.runAsync(`
         CREATE TABLE IF NOT EXISTS case_updates (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            case_id INT NOT NULL,
-            old_status VARCHAR(50),
-            new_status VARCHAR(50) NOT NULL,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id INTEGER NOT NULL,
+            old_status TEXT,
+            new_status TEXT NOT NULL,
             note TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            INDEX idx_case_updates_case (case_id),
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (case_id) REFERENCES cases(id) ON DELETE CASCADE
         )
     `);
 
-    await db.query(`
+    // Create case_messages table
+    await db.runAsync(`
         CREATE TABLE IF NOT EXISTS case_messages (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            case_id INT NOT NULL,
-            sender_type ENUM('client', 'admin') NOT NULL,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            case_id INTEGER NOT NULL,
+            sender_type TEXT CHECK(sender_type IN ('client', 'admin')) NOT NULL,
             content TEXT NOT NULL,
-            is_read TINYINT(1) DEFAULT 0,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            INDEX idx_case_messages_case (case_id),
+            is_read INTEGER DEFAULT 0,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (case_id) REFERENCES cases(id) ON DELETE CASCADE
         )
     `);
+
+    // Create users table (for admin login)
+    await db.runAsync(`
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            role TEXT DEFAULT 'admin',
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    `);
+
+    console.log('✅ All tables created successfully!');
 }
 
 function ensureSchema() {

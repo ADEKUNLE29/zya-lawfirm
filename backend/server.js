@@ -5,7 +5,6 @@ const path = require('path');
 
 const contactRoutes = require('./routes/contact');
 const authRoutes = require('./routes/auth');
-const clientRoutes = require('./routes/client');
 const caseRoutes = require('./routes/case');
 const messageRoutes = require('./routes/message');
 
@@ -32,7 +31,6 @@ app.use(express.urlencoded({ extended: true }));
 // ===== API ROUTES =====
 app.use('/api/contact', contactRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api/client', clientRoutes);
 app.use('/api/case', caseRoutes);
 app.use('/api/message', messageRoutes);
 

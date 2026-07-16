@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Terms of Service | ZYA Law Firm | Canadian Immigration Law</title>
+    <meta name="description" content="Terms of Service for ZYA Law Firm. Understand the terms and conditions of using our website and services.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root {
+            --navy: #0a1628; --navy-light: #1a365d; --gold: #c9a227; --gold-light: #d4af37;
+            --white: #ffffff; --cream: #faf8f5; --gray: #4a5568; --gray-light: #e2e8f0;
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Inter', sans-serif; color: var(--navy); overflow-x: hidden; background: var(--white); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .zya-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+        .zya-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--gold), var(--gold-light), #b8941f); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--navy); box-shadow: 0 3px 12px rgba(201, 162, 39, 0.3); flex-shrink: 0; }
+        .zya-wordmark { display: flex; flex-direction: column; }
+        .zya-wordmark .zya-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--gold); letter-spacing: 3px; line-height: 1; }
+        .zya-wordmark .zya-tag { font-size: 7px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 2px; }
+        .zya-logo-small .zya-icon { width: 32px; height: 32px; font-size: 14px; }
+        .zya-logo-small .zya-name { font-size: 16px; letter-spacing: 2px; }
+        .zya-logo-small .zya-tag { font-size: 6px; letter-spacing: 2px; }
+
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: all 0.4s ease; }
+        .navbar.scrolled { background: rgba(10, 22, 40, 0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 12px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; transition: color 0.3s; white-space: nowrap; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.3s ease; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy) !important; padding: 10px 24px; border-radius: 50px; font-weight: 600 !important; transition: all 0.3s !important; font-size: 13px !important; }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201, 162, 39, 0.35); }
+        .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; z-index: 1002; }
+        .mobile-toggle span { width: 26px; height: 2.5px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; display: block; }
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 22, 40, 0.98); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); z-index: 999; flex-direction: column; justify-content: center; align-items: center; gap: 0; padding: 80px 24px 40px; list-style: none; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
+        .mobile-menu.active { display: flex; opacity: 1; visibility: visible; }
+        .mobile-menu li { width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .mobile-menu li:last-child { border-bottom: none; }
+        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 22px; font-weight: 500; display: block; padding: 18px 0; transition: all 0.3s; }
+        .mobile-menu a:hover, .mobile-menu a.active { color: var(--gold); }
+        .mobile-menu .nav-cta { display: inline-block; margin-top: 16px; padding: 14px 40px; font-size: 16px !important; }
+
+        .page-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 140px 0 80px; text-align: center; position: relative; overflow: hidden; }
+        .page-header::before { content: ''; position: absolute; top: -50%; left: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201, 162, 39, 0.08) 0%, transparent 70%); animation: float 8s ease-in-out infinite; }
+        .page-header-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; font-size: 13px; color: rgba(255,255,255,0.6); flex-wrap: wrap; }
+        .breadcrumb a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: var(--gold-light); }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px); color: var(--white); margin-bottom: 16px; line-height: 1.1; }
+        .page-header p { color: rgba(255,255,255,0.7); font-size: clamp(14px, 1.8vw, 17px); line-height: 1.7; max-width: 600px; margin: 0 auto; }
+
+        .content-section { padding: 60px 0; background: var(--white); }
+        .content-container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .last-updated { background: var(--cream); padding: 16px 20px; border-radius: 12px; margin-bottom: 32px; border-left: 4px solid var(--gold); }
+        .last-updated p { margin: 0; font-size: 14px; color: var(--gray); }
+        .highlight-box { background: linear-gradient(135deg, rgba(201, 162, 39, 0.1), rgba(212, 175, 55, 0.05)); border-left: 4px solid var(--gold); padding: 20px; border-radius: 0 12px 12px 0; margin: 24px 0; }
+        .highlight-box p { margin: 0; color: var(--navy); font-weight: 500; font-size: 14px; }
+        .content-container h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 3vw, 28px); color: var(--navy); margin: 36px 0 16px; padding-bottom: 10px; border-bottom: 2px solid var(--gold); }
+        .content-container h3 { font-size: 18px; color: var(--navy); margin: 24px 0 12px; font-weight: 600; }
+        .content-container p { color: var(--gray); font-size: 15px; margin-bottom: 16px; }
+        .content-container ul { margin: 0 0 16px 20px; color: var(--gray); }
+        .content-container li { margin-bottom: 8px; font-size: 15px; }
+        .content-container a { color: var(--gold); text-decoration: none; }
+        .content-container a:hover { text-decoration: underline; }
+
+        .footer { background: var(--navy); padding: 60px 0 24px; color: var(--white); }
+        .footer-grid { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer-brand p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.7; margin-bottom: 20px; margin-top: 14px; }
+        .footer-social { display: flex; gap: 10px; }
+        .footer-social a { width: 38px; height: 38px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); text-decoration: none; transition: all 0.3s; font-size: 14px; }
+        .footer-social a:hover { background: var(--gold); color: var(--navy); transform: translateY(-3px); }
+        .footer-column h4 { font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 20px; color: var(--white); }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; transition: color 0.3s; display: block; padding: 2px 0; }
+        .footer-column a:hover { color: var(--gold); }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 24px 24px 0; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 13px; }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+        .footer-bottom-links a:hover { color: var(--gold); }
+
+        @media (max-width: 768px) {
+            html { font-size: 15px; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .page-header { padding: 120px 0 60px; }
+            .page-header h1 { font-size: 28px; }
+            .content-section { padding: 40px 0; }
+            .content-container { padding: 0 20px; }
+            .content-container h2 { font-size: 22px; }
+            .content-container h3 { font-size: 17px; }
+            .content-container p, .content-container li { font-size: 14px; }
+            .footer { padding: 48px 0 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; margin-bottom: 36px; }
+            .footer-column h4 { font-size: 16px; margin-bottom: 16px; }
+            .footer-bottom { flex-direction: column; text-align: center; gap: 16px; padding: 20px 20px 0; }
+            .footer-bottom-links { gap: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 24px; }
+            .content-container h2 { font-size: 20px; }
+        }
+
+        @media (min-width: 1400px) {
+            .content-container { max-width: 900px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <ul class="mobile-menu" id="mobileMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="nav-cta">Book Consultation</a></li>
+    </ul>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="zya-logo">
+                <div class="zya-icon">Z</div>
+                <div class="zya-wordmark"><span class="zya-name">ZYA</span><span class="zya-tag">LAW FIRM</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Book Consultation</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right" style="font-size: 10px;"></i>
+                <span>Terms of Service</span>
+            </div>
+            <h1>Terms of Service</h1>
+            <p>Understanding the terms and conditions of using our services</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="content-container">
+            <div class="last-updated">
+                <p><strong>Last Updated:</strong> July 10, 2026</p>
+            </div>
+            <div class="highlight-box">
+                <p><i class="fas fa-info-circle" style="color: var(--gold); margin-right: 8px;"></i>By accessing or using the ZYA Law Firm website and services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our website or services.</p>
+            </div>
+
+            <h2>1. Nature of Services</h2>
+            <p>ZYA Law Firm provides Canadian immigration legal services, including but not limited to:</p>
+            <ul>
+                <li>Immigration consultations and case assessments</li>
+                <li>Preparation and submission of immigration applications</li>
+                <li>Legal representation before immigration authorities</li>
+                <li>Document review and advisory services</li>
+                <li>Appeals and refugee claims</li>
+            </ul>
+            <p>All services are provided by or under the supervision of a licensed lawyer in good standing with the Law Society of Ontario.</p>
+
+            <h2>2. No Guarantee of Outcomes</h2>
+            <p>While ZYA Law Firm is committed to providing high-quality legal representation, we cannot and do not guarantee specific outcomes in any immigration matter. Immigration decisions are made by Canadian government authorities, and outcomes depend on various factors including:</p>
+            <ul>
+                <li>The completeness and accuracy of information and documentation provided by the client</li>
+                <li>Changes in immigration laws, policies, and procedures</li>
+                <li>The discretion of immigration officers and visa officers</li>
+                <li>Factors beyond our control</li>
+            </ul>
+
+            <h2>3. Client Responsibilities</h2>
+            <p>By engaging our services, you agree to:</p>
+            <ul>
+                <li>Provide complete, accurate, and truthful information</li>
+                <li>Submit all required documents in a timely manner</li>
+                <li>Notify us promptly of any changes to your circumstances</li>
+                <li>Attend scheduled appointments and consultations</li>
+                <li>Pay all fees as agreed in your retainer agreement</li>
+                <li>Communicate respectfully with our staff</li>
+            </ul>
+            <p>Failure to meet these responsibilities may result in delays, additional costs, or termination of services.</p>
+
+            <h2>4. Confidentiality and Privilege</h2>
+            <p>All communications between you and ZYA Law Firm are protected by solicitor-client privilege. We are bound by strict confidentiality obligations under the Law Society of Ontario rules and applicable privacy legislation.</p>
+            <p>However, privilege may not apply if:</p>
+            <ul>
+                <li>You waive privilege explicitly</li>
+                <li>Required by court order or law</li>
+                <li>Necessary to prevent imminent harm</li>
+            </ul>
+
+            <h2>5. Fees and Payment</h2>
+            <p>Our fee structure will be clearly outlined in your retainer agreement. General terms include:</p>
+            <ul>
+                <li><strong>Consultation Fees:</strong> Initial consultations may be subject to a fee, which will be disclosed in advance</li>
+                <li><strong>Retainer Deposits:</strong> A retainer deposit is required before work begins on most matters</li>
+                <li><strong>Fixed Fees:</strong> Certain services are offered at fixed, transparent rates</li>
+                <li><strong>Additional Costs:</strong> Government fees, translation costs, and third-party expenses are separate from legal fees</li>
+                <li><strong>Payment Methods:</strong> We accept bank transfers, credit cards, and other methods as agreed</li>
+            </ul>
+            <p>All fees are quoted in Canadian Dollars (CAD) unless otherwise specified.</p>
+
+            <h2>6. Website Use</h2>
+            <p>The content on this website is for informational purposes only and does not constitute legal advice. You should not rely on this information without consulting a qualified immigration lawyer about your specific situation.</p>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Use the website for any unlawful purpose</li>
+                <li>Attempt to gain unauthorized access to any part of the website or server</li>
+                <li>Copy, reproduce, or redistribute content without written permission</li>
+                <li>Submit false or misleading information through our forms</li>
+                <li>Interfere with the proper functioning of the website</li>
+            </ul>
+
+            <h2>7. Intellectual Property</h2>
+            <p>All content on this website, including text, graphics, logos, and software, is the property of ZYA Law Firm or its licensors and is protected by Canadian and international copyright, trademark, and other intellectual property laws.</p>
+            <p>You may view and print content for personal, non-commercial use only. Any other use requires our prior written consent.</p>
+
+            <h2>8. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, ZYA Law Firm shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of our website or services.</p>
+            <p>Our total liability for any claim arising from our services shall not exceed the total amount paid by you for the specific service giving rise to the claim.</p>
+
+            <h2>9. Third-Party Links</h2>
+            <p>Our website may contain links to third-party websites, including Canadian government immigration portals. These links are provided for convenience only. We do not endorse, control, or assume responsibility for the content, privacy policies, or practices of any third-party websites.</p>
+
+            <h2>10. Governing Law</h2>
+            <p>These Terms of Service shall be governed by and construed in accordance with the laws of the Province of Ontario and the federal laws of Canada. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Ontario.</p>
+
+            <h2>11. Changes to These Terms</h2>
+            <p>We may update these Terms of Service from time to time. Changes will be effective immediately upon posting to this page with an updated "Last Updated" date. Your continued use of our website and services after any changes constitutes acceptance of the revised terms.</p>
+
+            <h2>12. Termination</h2>
+            <p>Either party may terminate the lawyer-client relationship in accordance with the Law Society of Ontario rules. Upon termination:</p>
+            <ul>
+                <li>You remain responsible for all fees incurred up to the date of termination</li>
+                <li>We will return your original documents upon request</li>
+                <li>Confidentiality obligations continue indefinitely</li>
+            </ul>
+
+            <h2>13. Contact Us</h2>
+            <p>If you have any questions about these Terms of Service, please contact us:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:info@zyalawfirm.com">info@zyalawfirm.com</a></li>
+                <li><strong>Phone:</strong> <a href="tel:+12265052867">+1 (226) 505-2867</a></li>
+                <li><strong>Address:</strong> Scarborough, Ontario, Canada</li>
+            </ul>
+            <p>We are committed to addressing your concerns promptly and professionally.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="zya-logo zya-logo-small">
+                    <div class="zya-icon">Z</div>
+                    <div class="zya-wordmark"><span class="zya-name">ZYA</span><span class="zya-tag">LAW FIRM</span></div>
+                </a>
+                <p>Providing expert Canadian immigration legal services with integrity, compassion, and a deep commitment to every client's success.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Work Visas</a></li>
+                    <li><a href="services.html">Study Permits</a></li>
+                    <li><a href="services.html">Family Sponsorship</a></li>
+                    <li><a href="services.html">Express Entry</a></li>
+                    <li><a href="services.html">Citizenship</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html">Our Attorney</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:info@zyalawfirm.com">info@zyalawfirm.com</a></li>
+                    <li><a href="tel:+12265052867">+1 (226) 505-2867</a></li>
+                    <li><a href="#">Toronto, Ontario, Canada</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ZYA Law Firm. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+        mobileToggle.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = menuOpen ? 'hidden' : '';
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => { menuOpen = false; mobileToggle.classList.remove('active'); mobileMenu.classList.remove('active'); document.body.style.overflow = ''; });
+        });
+    </script>
+
+</body>
+</html>

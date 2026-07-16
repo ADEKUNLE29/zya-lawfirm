@@ -1,91 +1,139 @@
-// ===== CASE ROUTE - Admin case management =====
+// ===== AUTH ROUTE - Admin Login System =====
+// JWT Authentication for dashboard access
 
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const db = require('../config/db');
-const authMiddleware = require('../middleware/auth');
-const { ensureSchema } = require('../config/schema');
 
-router.get('/admin/all', authMiddleware, async (req, res) => {
+// ===== CREATE USERS TABLE + DEFAULT ADMIN =====
+const setupAdmin = async () => {
     try {
-        await ensureSchema();
-
-        const [cases] = await db.query(`
-            SELECT
-                c.id,
-                c.client_id,
-                c.contact_id,
-                c.service_type,
-                c.status,
-                c.created_at,
-                c.updated_at,
-                cl.first_name,
-                cl.last_name,
-                cl.email,
-                COALESCE(SUM(CASE WHEN m.sender_type = 'client' AND m.is_read = 0 THEN 1 ELSE 0 END), 0) AS unread_messages
-            FROM cases c
-            JOIN clients cl ON cl.id = c.client_id
-            LEFT JOIN case_messages m ON m.case_id = c.id
-            GROUP BY c.id, c.client_id, c.contact_id, c.service_type, c.status, c.created_at, c.updated_at, cl.first_name, cl.last_name, cl.email
-            ORDER BY c.updated_at DESC
+        // Create table
+        await db.runAsync(`
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE NOT NULL,
+                password TEXT NOT NULL,
+                role TEXT DEFAULT 'admin',
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
         `);
+
+        // Check if admin exists
+        const existing = await db.getAsync('SELECT * FROM users WHERE username = ?', [process.env.ADMIN_USERNAME || 'zainab']);
+
+        if (!existing) {
+            // Hash password and create admin
+            const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'zyalaw2026', 10);
+
+            await db.runAsync(
+                'INSERT INTO users (username, password, role) VALUES (?, ?, ?)',
+                [process.env.ADMIN_USERNAME || 'zainab', hashedPassword, 'admin']
+            );
+
+            console.log('✅ Default admin created!');
+        } else {
+            console.log('✅ Admin account already exists.');
+        }
+
+    } catch (err) {
+        console.error('❌ Error setting up admin:', err.message);
+    }
+};
+
+setupAdmin();
+
+// ===== LOGIN (POST /api/auth/login) =====
+router.post('/login', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        // Validate
+        if (!username || !password) {
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide username and password.'
+            });
+        }
+
+        // Find user
+        const user = await db.getAsync('SELECT * FROM users WHERE username = ?', [username]);
+
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid credentials.'
+            });
+        }
+
+        // Check password
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid credentials.'
+            });
+        }
+
+        // Create JWT token
+        const token = jwt.sign(
+            { id: user.id, username: user.username, role: user.role },
+            process.env.JWT_SECRET || 'zyalaw_secret_key_2026_secure',
+            { expiresIn: '24h' }
+        );
 
         res.json({
             success: true,
-            count: cases.length,
-            cases
+            message: 'Login successful!',
+            token: token,
+            user: {
+                id: user.id,
+                username: user.username,
+                role: user.role
+            }
         });
+
     } catch (error) {
-        console.error('Error loading cases:', error);
-        res.status(500).json({ success: false, message: 'Failed to load cases.' });
+        console.error('❌ Login error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Server error. Please try again.'
+        });
     }
 });
 
-router.put('/admin/:caseId/status', authMiddleware, async (req, res) => {
+// ===== VERIFY TOKEN (GET /api/auth/me) =====
+router.get('/me', async (req, res) => {
     try {
-        await ensureSchema();
+        const token = req.headers.authorization?.split(' ')[1];
 
-        const { caseId } = req.params;
-        const { status, note } = req.body;
-
-        const allowedStatuses = [
-            'submitted',
-            'under_review',
-            'documents_needed',
-            'in_progress',
-            'decision_made',
-            'closed'
-        ];
-
-        if (!allowedStatuses.includes(status)) {
-            return res.status(400).json({ success: false, message: 'Invalid case status.' });
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: 'No token provided.'
+            });
         }
 
-        const [rows] = await db.query('SELECT status FROM cases WHERE id = ?', [caseId]);
-
-        if (rows.length === 0) {
-            return res.status(404).json({ success: false, message: 'Case not found.' });
-        }
-
-        const oldStatus = rows[0].status;
-
-        await db.query(
-            'UPDATE cases SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
-            [status, caseId]
-        );
-
-        await db.query(
-            'INSERT INTO case_updates (case_id, old_status, new_status, note) VALUES (?, ?, ?, ?)',
-            [caseId, oldStatus, status, note || '']
-        );
+        // Verify token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'zyalaw_secret_key_2026_secure');
 
         res.json({
             success: true,
-            message: 'Case status updated.'
+            user: {
+                id: decoded.id,
+                username: decoded.username,
+                role: decoded.role
+            }
         });
+
     } catch (error) {
-        console.error('Error updating case status:', error);
-        res.status(500).json({ success: false, message: 'Failed to update case status.' });
+        res.status(401).json({
+            success: false,
+            message: 'Invalid or expired token.'
+        });
     }
 });
 

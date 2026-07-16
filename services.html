@@ -2,514 +2,430 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Our Services | ZYA Law Firm | Canadian Immigration Law</title>
-    <meta name="description" content="Comprehensive Canadian immigration services: Work Visas, Study Permits, Family Sponsorship, Express Entry, Citizenship & Deportation Defense. Expert legal protection for immigrants.">
+    <meta name="description" content="Comprehensive Canadian immigration services including Express Entry, work visas, study permits, family sponsorship, and deportation defense.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root {
+            --navy: #0a1628; --navy-light: #1a365d; --gold: #c9a227; --gold-light: #d4af37;
+            --white: #ffffff; --cream: #faf8f5; --gray: #4a5568; --gray-light: #e2e8f0;
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Inter', sans-serif; color: var(--navy); overflow-x: hidden; background: var(--white); -webkit-font-smoothing: antialiased; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
+
+        .zya-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+        .zya-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--gold), var(--gold-light), #b8941f); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--navy); box-shadow: 0 3px 12px rgba(201, 162, 39, 0.3); flex-shrink: 0; }
+        .zya-wordmark { display: flex; flex-direction: column; }
+        .zya-wordmark .zya-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--gold); letter-spacing: 3px; line-height: 1; }
+        .zya-wordmark .zya-tag { font-size: 7px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 2px; }
+        .zya-logo-small .zya-icon { width: 32px; height: 32px; font-size: 14px; }
+        .zya-logo-small .zya-name { font-size: 16px; letter-spacing: 2px; }
+        .zya-logo-small .zya-tag { font-size: 6px; letter-spacing: 2px; }
+
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: all 0.4s ease; }
+        .navbar.scrolled { background: rgba(10, 22, 40, 0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 12px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 14px; font-weight: 500; position: relative; transition: color 0.3s; white-space: nowrap; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.3s ease; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy) !important; padding: 10px 24px; border-radius: 50px; font-weight: 600 !important; transition: all 0.3s !important; font-size: 13px !important; }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201, 162, 39, 0.35); }
+        .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; z-index: 1002; }
+        .mobile-toggle span { width: 26px; height: 2.5px; background: var(--white); border-radius: 2px; transition: all 0.3s ease; display: block; }
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 22, 40, 0.98); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); z-index: 999; flex-direction: column; justify-content: center; align-items: center; gap: 0; padding: 80px 24px 40px; list-style: none; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
+        .mobile-menu.active { display: flex; opacity: 1; visibility: visible; }
+        .mobile-menu li { width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .mobile-menu li:last-child { border-bottom: none; }
+        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 22px; font-weight: 500; display: block; padding: 18px 0; transition: all 0.3s; }
+        .mobile-menu a:hover, .mobile-menu a.active { color: var(--gold); }
+        .mobile-menu .nav-cta { display: inline-block; margin-top: 16px; padding: 14px 40px; font-size: 16px !important; }
+
+        .page-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 140px 0 80px; text-align: center; position: relative; overflow: hidden; }
+        .page-header::before { content: ''; position: absolute; top: -50%; left: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201, 162, 39, 0.08) 0%, transparent 70%); animation: float 8s ease-in-out infinite; }
+        .page-header-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .breadcrumb { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; font-size: 13px; color: rgba(255,255,255,0.6); flex-wrap: wrap; }
+        .breadcrumb a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: var(--gold-light); }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px); color: var(--white); margin-bottom: 16px; line-height: 1.1; }
+        .page-header p { color: rgba(255,255,255,0.7); font-size: clamp(14px, 1.8vw, 17px); line-height: 1.7; max-width: 600px; margin: 0 auto; }
+
+        .services-section { padding: 80px 0; background: var(--white); }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 48px; padding: 0 24px; }
+        .section-header span { color: var(--gold); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px); color: var(--navy); margin: 10px 0 16px; }
+        .section-header p { color: var(--gray); font-size: clamp(14px, 1.5vw, 16px); line-height: 1.7; }
+
+        .service-detail { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 80px; }
+        .service-detail:nth-child(even) .service-detail-image { order: 2; }
+        .service-detail:nth-child(even) .service-detail-content { order: 1; }
+        .service-detail-image { background: linear-gradient(135deg, var(--navy), var(--navy-light)); border-radius: 20px; padding: 48px; display: flex; align-items: center; justify-content: center; min-height: 280px; position: relative; overflow: hidden; }
+        .service-detail-image::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(201, 162, 39, 0.08) 0%, transparent 50%); }
+        .service-detail-image i { font-size: 64px; color: var(--gold); position: relative; z-index: 2; }
+        .service-detail-content span { color: var(--gold); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+        .service-detail-content h3 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3vw, 32px); color: var(--navy); margin: 12px 0 16px; }
+        .service-detail-content p { color: var(--gray); font-size: clamp(14px, 1.5vw, 15px); line-height: 1.8; margin-bottom: 16px; }
+        .service-features { list-style: none; margin: 20px 0; }
+        .service-features li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; color: var(--gray); font-size: 14px; }
+        .service-features li i { color: var(--gold); font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+        .btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; touch-action: manipulation; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(201, 162, 39, 0.35); }
+
+        .process-section { padding: 80px 0; background: var(--cream); }
+        .process-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 0 24px; }
+        .process-card { background: var(--white); padding: 36px 24px; border-radius: 20px; text-align: center; transition: all 0.35s ease; border: 1px solid var(--gray-light); position: relative; }
+        .process-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.08); border-color: transparent; }
+        .process-number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--navy); }
+        .process-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); margin-bottom: 10px; }
+        .process-card p { color: var(--gray); font-size: 13px; line-height: 1.7; }
+
+        .cta-section { padding: 80px 0; background: var(--white); text-align: center; }
+        .cta-container { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+        .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px); color: var(--navy); margin-bottom: 16px; }
+        .cta-section p { color: var(--gray); font-size: clamp(14px, 1.5vw, 18px); line-height: 1.7; margin-bottom: 32px; }
+
+        .footer { background: var(--navy); padding: 60px 0 24px; color: var(--white); }
+        .footer-grid { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer-brand p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.7; margin-bottom: 20px; margin-top: 14px; }
+        .footer-social { display: flex; gap: 10px; }
+        .footer-social a { width: 38px; height: 38px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); text-decoration: none; transition: all 0.3s; font-size: 14px; }
+        .footer-social a:hover { background: var(--gold); color: var(--navy); transform: translateY(-3px); }
+        .footer-column h4 { font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 20px; color: var(--white); }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; transition: color 0.3s; display: block; padding: 2px 0; }
+        .footer-column a:hover { color: var(--gold); }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 24px 24px 0; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 13px; }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+        .footer-bottom-links a:hover { color: var(--gold); }
+
+        /* TABLET */
+        @media (max-width: 1024px) {
+            .service-detail { grid-template-columns: 1fr; gap: 32px; margin-bottom: 60px; }
+            .service-detail:nth-child(even) .service-detail-image { order: -1; }
+            .service-detail:nth-child(even) .service-detail-content { order: 1; }
+            .service-detail-image { min-height: 220px; padding: 36px; }
+            .service-detail-image i { font-size: 48px; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            html { font-size: 15px; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .page-header { padding: 120px 0 60px; }
+            .page-header h1 { font-size: 30px; }
+            .services-section { padding: 60px 0; }
+            .service-detail { padding: 0 20px; gap: 24px; margin-bottom: 48px; }
+            .service-detail-image { min-height: 180px; padding: 28px; border-radius: 16px; }
+            .service-detail-image i { font-size: 40px; }
+            .service-detail-content h3 { font-size: 22px; }
+            .btn-primary { width: 100%; justify-content: center; padding: 16px 24px; }
+            .process-section { padding: 60px 0; }
+            .process-grid { grid-template-columns: 1fr; gap: 16px; padding: 0 20px; }
+            .process-card { padding: 28px 20px; }
+            .process-number { width: 42px; height: 42px; font-size: 18px; }
+            .cta-section { padding: 60px 0; }
+            .footer { padding: 48px 0 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; margin-bottom: 36px; }
+            .footer-column h4 { font-size: 16px; margin-bottom: 16px; }
+            .footer-bottom { flex-direction: column; text-align: center; gap: 16px; padding: 20px 20px 0; }
+            .footer-bottom-links { gap: 20px; }
+        }
+
+        /* SMALL MOBILE */
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 26px; }
+            .section-header h2 { font-size: 26px; }
+            .service-detail-content h3 { font-size: 20px; }
+            .cta-section h2 { font-size: 26px; }
+        }
+
+        /* LARGE */
+        @media (min-width: 1400px) {
+            .service-detail { max-width: 1320px; }
+            .process-grid { max-width: 1320px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+<base target="_blank">
 </head>
 <body>
 
-    <!-- SAFETY BANNER -->
-    <div class="safety-banner">
-        <div class="container">
-            <div class="safety-banner-inner">
-                <i class="fas fa-shield-alt"></i>
-                <span><strong>Your Safety & Confidentiality Are Protected</strong> — All consultations are strictly confidential. Licensed & regulated by the Law Society of Ontario.</span>
-            </div>
-        </div>
-    </div>
+    <ul class="mobile-menu" id="mobileMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="nav-cta">Book Consultation</a></li>
+    </ul>
 
-    <!-- NAVIGATION -->
     <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-inner">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">Z</div>
-                    <div class="logo-text">ZYA <span>Law</span></div>
-                </a>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html" class="active">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="contact.html" class="nav-cta">Free Consultation</a></li>
-                </ul>
-                <div class="mobile-toggle" id="mobileToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
+        <div class="nav-container">
+            <a href="index.html" class="zya-logo">
+                <div class="zya-icon">Z</div>
+                <div class="zya-wordmark"><span class="zya-name">ZYA</span><span class="zya-tag">LAW FIRM</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Book Consultation</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
-        <a href="contact.html" class="nav-cta">Free Consultation</a>
-    </div>
-
-    <!-- PAGE HEADER -->
     <section class="page-header">
-        <div class="container">
-            <div class="page-header-content fade-in">
-                <div class="breadcrumb">
-                    <a href="index.html">Home</a>
-                    <i class="fas fa-chevron-right"></i>
-                    <span>Services</span>
-                </div>
-                <h1>Our Immigration Services</h1>
-                <p>Comprehensive legal solutions for every stage of your Canadian immigration journey — from temporary visas to permanent citizenship and deportation defense.</p>
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right" style="font-size: 10px;"></i>
+                <span>Services</span>
+            </div>
+            <h1>Our Services</h1>
+            <p>Comprehensive Canadian immigration legal services tailored to your unique situation and goals.</p>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="section-header animate-on-scroll">
+            <span>What We Offer</span>
+            <h2>Immigration Solutions for Every Pathway</h2>
+            <p>From temporary visas to permanent residency and citizenship, we provide expert guidance through every stage of the Canadian immigration process.</p>
+        </div>
+
+        <div class="service-detail animate-on-scroll">
+            <div class="service-detail-image"><i class="fas fa-briefcase"></i></div>
+            <div class="service-detail-content">
+                <span>Work & Business</span>
+                <h3>Work Visas & Permits</h3>
+                <p>Navigate the Canadian labour market with confidence. We assist with Labour Market Impact Assessments (LMIA), intra-company transfers, open work permits, and specialized work authorizations for professionals, entrepreneurs, and business owners.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> LMIA-based work permits</li>
+                    <li><i class="fas fa-check"></i> Intra-company transfers</li>
+                    <li><i class="fas fa-check"></i> Post-graduation work permits</li>
+                    <li><i class="fas fa-check"></i> Spousal open work permits</li>
+                </ul>
+                <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Discuss Your Case</a>
+            </div>
+        </div>
+
+        <div class="service-detail animate-on-scroll delay-1">
+            <div class="service-detail-image"><i class="fas fa-graduation-cap"></i></div>
+            <div class="service-detail-content">
+                <span>Education</span>
+                <h3>Study Permits</h3>
+                <p>Canada is home to world-class educational institutions. We help students secure study permits, navigate the Student Direct Stream, and plan their transition from student to permanent resident through strategic pathway planning.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Study permit applications</li>
+                    <li><i class="fas fa-check"></i> Student Direct Stream</li>
+                    <li><i class="fas fa-check"></i> Study permit extensions</li>
+                    <li><i class="fas fa-check"></i> Post-graduation work permit transitions</li>
+                </ul>
+                <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Discuss Your Case</a>
+            </div>
+        </div>
+
+        <div class="service-detail animate-on-scroll delay-2">
+            <div class="service-detail-image"><i class="fas fa-heart"></i></div>
+            <div class="service-detail-content">
+                <span>Family</span>
+                <h3>Family Sponsorship</h3>
+                <p>Reunite with your loved ones in Canada. We handle spousal sponsorship, common-law partner applications, parental and grandparent sponsorship, and dependent child applications with care and precision.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Spousal and common-law sponsorship</li>
+                    <li><i class="fas fa-check"></i> Parental and grandparent sponsorship</li>
+                    <li><i class="fas fa-check"></i> Dependent child applications</li>
+                    <li><i class="fas fa-check"></i> Super visa applications</li>
+                </ul>
+                <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Discuss Your Case</a>
+            </div>
+        </div>
+
+        <div class="service-detail animate-on-scroll delay-3">
+            <div class="service-detail-image"><i class="fas fa-star"></i></div>
+            <div class="service-detail-content">
+                <span>Permanent Residence</span>
+                <h3>Express Entry & PNPs</h3>
+                <p>Maximize your chances of securing permanent residency through strategic profile optimization. We specialize in Federal Skilled Worker, Canadian Experience Class, Federal Skilled Trades, and Provincial Nominee Programs.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Comprehensive profile assessment</li>
+                    <li><i class="fas fa-check"></i> CRS score optimization strategies</li>
+                    <li><i class="fas fa-check"></i> Provincial Nominee Program applications</li>
+                    <li><i class="fas fa-check"></i> Express Entry pool management</li>
+                </ul>
+                <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Discuss Your Case</a>
+            </div>
+        </div>
+
+        <div class="service-detail animate-on-scroll delay-1">
+            <div class="service-detail-image"><i class="fas fa-flag"></i></div>
+            <div class="service-detail-content">
+                <span>Citizenship</span>
+                <h3>Citizenship Applications</h3>
+                <p>Complete your Canadian journey with citizenship. We guide you through residency requirements, application preparation, and citizenship test preparation to ensure a smooth path to becoming a Canadian citizen.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Citizenship application preparation</li>
+                    <li><i class="fas fa-check"></i> Residency requirement analysis</li>
+                    <li><i class="fas fa-check"></i> Citizenship test preparation</li>
+                    <li><i class="fas fa-check"></i> Citizenship ceremony guidance</li>
+                </ul>
+                <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Discuss Your Case</a>
+            </div>
+        </div>
+
+        <div class="service-detail animate-on-scroll delay-2">
+            <div class="service-detail-image"><i class="fas fa-gavel"></i></div>
+            <div class="service-detail-content">
+                <span>Defense</span>
+                <h3>Deportation & Appeals</h3>
+                <p>When facing immigration challenges, you need fierce advocacy. We provide urgent representation for detention reviews, admissibility hearings, removal order appeals, and refugee claims.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Detention reviews and bail hearings</li>
+                    <li><i class="fas fa-check"></i> Admissibility hearings</li>
+                    <li><i class="fas fa-check"></i> Removal order appeals (IAD)</li>
+                    <li><i class="fas fa-check"></i> Refugee claims and appeals</li>
+                </ul>
+                <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Discuss Your Case</a>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES OVERVIEW -->
-    <section class="services" style="padding: 80px 0 40px;">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">Practice Areas</span>
-                <h2>How We Can Help You</h2>
-                <p>Every immigration case is unique. We provide personalized legal strategies tailored to your specific situation, goals, and timeline.</p>
+    <section class="process-section">
+        <div class="section-header animate-on-scroll">
+            <span>How It Works</span>
+            <h2>Our Simple 4-Step Process</h2>
+            <p>We have streamlined our approach to make your immigration journey as smooth and stress-free as possible.</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-card animate-on-scroll delay-1">
+                <div class="process-number">1</div>
+                <h3>Initial Consultation</h3>
+                <p>Schedule a confidential consultation to discuss your goals, assess your eligibility, and explore your options.</p>
+            </div>
+            <div class="process-card animate-on-scroll delay-2">
+                <div class="process-number">2</div>
+                <h3>Strategy Development</h3>
+                <p>We develop a personalized legal strategy tailored to your unique circumstances and immigration objectives.</p>
+            </div>
+            <div class="process-card animate-on-scroll delay-3">
+                <div class="process-number">3</div>
+                <h3>Application Preparation</h3>
+                <p>We meticulously prepare and review all documentation to ensure accuracy and completeness before submission.</p>
+            </div>
+            <div class="process-card animate-on-scroll delay-4">
+                <div class="process-number">4</div>
+                <h3>Ongoing Support</h3>
+                <p>We monitor your application, respond to requests, and provide updates until your case is resolved.</p>
             </div>
         </div>
     </section>
 
-    <!-- SERVICE 1: WORK VISAS -->
-    <section class="service-detail" id="work-visa">
-        <div class="container">
-            <div class="service-detail-grid">
-                <div class="service-detail-content fade-in-left">
-                    <div class="service-number">01</div>
-                    <h2>Work Visas & Permits</h2>
-                    <p>Canada's economy relies on skilled workers from around the world. Whether you're a tech professional, healthcare worker, tradesperson, or entrepreneur, we help you navigate the complex work permit landscape to build your career in Canada legally and safely.</p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>LMIA-based work permits (employer-sponsored)</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Intra-company transfers (L-1 equivalent)</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Open work permits (spousal, bridging, PGWP)</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Post-Graduation Work Permits (PGWP)</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>International Experience Canada (IEC)</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Global Talent Stream (fast-track for tech workers)</span>
-                        </div>
-                    </div>
-                    <div style="background: var(--bg-light); padding: 20px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); margin-bottom: 24px;">
-                        <p style="font-size: 14px; color: var(--text-medium); margin: 0;"><i class="fas fa-shield-alt" style="color: var(--accent); margin-right: 8px;"></i><strong>Your Safety:</strong> We verify employer legitimacy, ensure contract fairness, and protect you from exploitation or fraudulent job offers that could jeopardize your status.</p>
-                    </div>
-                    <a href="contact.html" class="btn-primary">
-                        <i class="fas fa-calendar-check"></i>
-                        Discuss Your Work Visa
-                    </a>
-                </div>
-                <div class="service-detail-image fade-in-right">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=500&fit=crop" alt="Work Visa Services">
-                    <div class="service-badge">
-                        <i class="fas fa-briefcase"></i>
-                        Work Visa Expert
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICE 2: STUDY PERMITS -->
-    <section class="service-detail" id="study-permit" style="background: var(--bg-light);">
-        <div class="container">
-            <div class="service-detail-grid">
-                <div class="service-detail-content fade-in-right">
-                    <div class="service-number">02</div>
-                    <h2>Study Permits</h2>
-                    <p>Canada is home to world-class universities and colleges that attract students from every corner of the globe. We've helped over 200 international students secure their study permits and transition smoothly from student life to permanent residence.</p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Initial study permit applications</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Study permit extensions & renewals</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Co-op work permit applications</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Study-to-PR pathway planning</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Visitor visa to study permit transitions</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Refused study permit appeals</span>
-                        </div>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); margin-bottom: 24px;">
-                        <p style="font-size: 14px; color: var(--text-medium); margin: 0;"><i class="fas fa-shield-alt" style="color: var(--accent); margin-right: 8px;"></i><strong>Your Safety:</strong> We help you choose Designated Learning Institutions (DLIs), verify program legitimacy, and ensure your study plan meets IRCC requirements to avoid refusal or status violation.</p>
-                    </div>
-                    <a href="contact.html" class="btn-primary">
-                        <i class="fas fa-calendar-check"></i>
-                        Plan Your Study Journey
-                    </a>
-                </div>
-                <div class="service-detail-image fade-in-left">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=500&fit=crop" alt="Study Permit Services">
-                    <div class="service-badge">
-                        <i class="fas fa-graduation-cap"></i>
-                        200+ Students Helped
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICE 3: FAMILY SPONSORSHIP -->
-    <section class="service-detail" id="family-sponsorship">
-        <div class="container">
-            <div class="service-detail-grid">
-                <div class="service-detail-content fade-in-left">
-                    <div class="service-number">03</div>
-                    <h2>Family Sponsorship</h2>
-                    <p>Family is everything. Canadian immigration law recognizes this fundamental truth, and so do we. We help Canadian citizens and permanent residents reunite with their loved ones through every available family sponsorship pathway.</p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Spousal & common-law partner sponsorship</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Parent & grandparent sponsorship (PGP)</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Dependent child sponsorship</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Super Visa for extended family visits</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Orphaned relative & adopted child sponsorship</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Lonely Canadian & remaining relative applications</span>
-                        </div>
-                    </div>
-                    <div style="background: var(--bg-light); padding: 20px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); margin-bottom: 24px;">
-                        <p style="font-size: 14px; color: var(--text-medium); margin: 0;"><i class="fas fa-shield-alt" style="color: var(--accent); margin-right: 8px;"></i><strong>Your Safety:</strong> We protect vulnerable family members from exploitation, ensure financial sponsorship requirements are met, and safeguard against marriage fraud allegations that could destroy families.</p>
-                    </div>
-                    <a href="contact.html" class="btn-primary">
-                        <i class="fas fa-heart"></i>
-                        Reunite Your Family
-                    </a>
-                </div>
-                <div class="service-detail-image fade-in-right">
-                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=600&h=500&fit=crop" alt="Family Sponsorship Services">
-                    <div class="service-badge">
-                        <i class="fas fa-heart"></i>
-                        Family First
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICE 4: EXPRESS ENTRY & PR -->
-    <section class="service-detail" id="express-entry" style="background: var(--bg-light);">
-        <div class="container">
-            <div class="service-detail-grid">
-                <div class="service-detail-content fade-in-right">
-                    <div class="service-number">04</div>
-                    <h2>Express Entry & Permanent Residence</h2>
-                    <p>Express Entry is Canada's flagship immigration system for skilled workers — but it's also one of the most competitive. With our expertise in CRS score optimization and Provincial Nominee Programs, we maximize your chances of receiving that coveted Invitation to Apply (ITA).</p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Express Entry profile creation & optimization</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Provincial Nominee Programs (PNP)</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Canadian Experience Class (CEC)</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Federal Skilled Worker (FSW) applications</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Federal Skilled Trades (FST) programs</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>CRS score improvement strategies</span>
-                        </div>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); margin-bottom: 24px;">
-                        <p style="font-size: 14px; color: var(--text-medium); margin: 0;"><i class="fas fa-shield-alt" style="color: var(--accent); margin-right: 8px;"></i><strong>Your Safety:</strong> We ensure complete accuracy in your Express Entry profile, protect against misrepresentation charges (which carry a 5-year ban), and guide you through every document requirement.</p>
-                    </div>
-                    <a href="contact.html" class="btn-primary">
-                        <i class="fas fa-passport"></i>
-                        Start Your PR Journey
-                    </a>
-                </div>
-                <div class="service-detail-image fade-in-left">
-                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=500&fit=crop" alt="Express Entry Services">
-                    <div class="service-badge">
-                        <i class="fas fa-passport"></i>
-                        PR Pathway Experts
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICE 5: CITIZENSHIP -->
-    <section class="service-detail" id="citizenship">
-        <div class="container">
-            <div class="service-detail-grid">
-                <div class="service-detail-content fade-in-left">
-                    <div class="service-number">05</div>
-                    <h2>Citizenship & Naturalization</h2>
-                    <p>Becoming a Canadian citizen is the culmination of your immigration journey — and a moment of profound pride. We guide you through the entire citizenship process, from eligibility assessment to the oath ceremony, ensuring every requirement is met with precision.</p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Citizenship application preparation & filing</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Citizenship test preparation & coaching</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Physical presence calculation & optimization</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Residency obligation appeals</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Citizenship by descent applications</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Renunciation & restoration of citizenship</span>
-                        </div>
-                    </div>
-                    <div style="background: var(--bg-light); padding: 20px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); margin-bottom: 24px;">
-                        <p style="font-size: 14px; color: var(--text-medium); margin: 0;"><i class="fas fa-shield-alt" style="color: var(--accent); margin-right: 8px;"></i><strong>Your Safety:</strong> We protect your permanent resident status during the citizenship process, ensure tax compliance doesn't jeopardize your application, and safeguard against criminal inadmissibility issues.</p>
-                    </div>
-                    <a href="contact.html" class="btn-primary">
-                        <i class="fas fa-flag"></i>
-                        Become a Canadian Citizen
-                    </a>
-                </div>
-                <div class="service-detail-image fade-in-right">
-                    <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&h=500&fit=crop" alt="Citizenship Services">
-                    <div class="service-badge">
-                        <i class="fas fa-flag"></i>
-                        Citizenship Experts
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICE 6: DEPORTATION DEFENSE -->
-    <section class="service-detail" id="deportation" style="background: var(--bg-light);">
-        <div class="container">
-            <div class="service-detail-grid">
-                <div class="service-detail-content fade-in-right">
-                    <div class="service-number">06</div>
-                    <h2>Deportation Defense & Appeals</h2>
-                    <p>When deportation threatens everything you've built, you need a fighter in your corner. We've successfully defended over 50 families from removal, turning seemingly hopeless cases into victories. If you're facing a removal order, inadmissibility finding, or detention — we are your last line of defense.</p>
-                    <div class="service-features">
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Removal order appeals (IAD & Federal Court)</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Admissibility hearings & defense</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Detention reviews & bail hearings</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Humanitarian & Compassionate (H&C) applications</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Pre-Removal Risk Assessments (PRRA)</span>
-                        </div>
-                        <div class="service-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Criminal rehabilitation & record suspensions</span>
-                        </div>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: var(--radius-md); border-left: 4px solid #e53e3e; margin-bottom: 24px;">
-                        <p style="font-size: 14px; color: var(--text-medium); margin: 0;"><i class="fas fa-exclamation-triangle" style="color: #e53e3e; margin-right: 8px;"></i><strong style="color: #e53e3e;">URGENT:</strong> Deportation cases are time-sensitive. Every day matters. Contact us immediately if you or a loved one has received a removal order or detention notice. We offer emergency consultations.</p>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); margin-bottom: 24px;">
-                        <p style="font-size: 14px; color: var(--text-medium); margin: 0;"><i class="fas fa-shield-alt" style="color: var(--accent); margin-right: 8px;"></i><strong>Your Safety:</strong> We provide emergency legal protection, coordinate with detention centers, and fight for your right to remain in Canada. Your physical safety and family unity are our absolute priority.</p>
-                    </div>
-                    <a href="contact.html" class="btn-primary" style="background: #e53e3e;">
-                        <i class="fas fa-phone"></i>
-                        Emergency Deportation Help
-                    </a>
-                </div>
-                <div class="service-detail-image fade-in-left">
-                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=500&fit=crop" alt="Deportation Defense">
-                    <div class="service-badge" style="background: #e53e3e;">
-                        <i class="fas fa-gavel"></i>
-                        50+ Families Saved
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA SECTION -->
     <section class="cta-section">
-        <div class="container">
-            <div class="cta-inner">
-                <div class="cta-content fade-in" style="text-align: center; max-width: 700px; margin: 0 auto;">
-                    <h2>Not Sure Which Service You Need?</h2>
-                    <p>Every immigration journey is different. Book a free consultation and we'll assess your situation, explain your options, and recommend the best pathway forward — with complete honesty about your chances of success.</p>
-                    <div class="cta-features" style="max-width: 500px; margin: 0 auto 36px;">
-                        <div class="cta-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Free initial consultation</span>
-                        </div>
-                        <div class="cta-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Honest assessment of your case</span>
-                        </div>
-                        <div class="cta-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>No obligation, no pressure</span>
-                        </div>
-                        <div class="cta-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>100% confidential & secure</span>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="btn-primary">
-                        <i class="fas fa-calendar-check"></i>
-                        Book Your Free Consultation
-                    </a>
-                </div>
-            </div>
+        <div class="cta-container animate-on-scroll">
+            <span style="color: var(--gold); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;">Get Started Today</span>
+            <h2>Not Sure Which Service You Need?</h2>
+            <p>Schedule a consultation and we will assess your situation to recommend the best immigration pathway for you.</p>
+            <a href="contact.html" class="btn-primary" style="font-size: 17px; padding: 16px 44px;"><i class="fas fa-calendar-check"></i> Book  Consultation</a>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <div class="logo-icon">Z</div>
-                        <div class="logo-text">ZYA <span>Law</span></div>
-                    </a>
-                    <p>Providing expert Canadian immigration legal services with integrity, compassion, and a commitment to your success. Your future in Canada starts with the right legal partner.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services.html#work-visa">Work Visas</a></li>
-                        <li><a href="services.html#study-permit">Study Permits</a></li>
-                        <li><a href="services.html#family-sponsorship">Family Sponsorship</a></li>
-                        <li><a href="services.html#express-entry">Express Entry</a></li>
-                        <li><a href="services.html#citizenship">Citizenship</a></li>
-                        <li><a href="services.html#deportation">Deportation Defense</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="about.html">Our Team</a></li>
-                        <li><a href="#">Blog & Resources</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Contact Us</h4>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>aderibigbeyetunde@gmail.com</span>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+1 (226) 505-2867</span>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Toronto, Ontario, Canada</span>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 2:00 PM</span>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <span><strong>Licensed & Regulated</strong><br>Law Society of Ontario</span>
-                    </div>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="zya-logo zya-logo-small">
+                    <div class="zya-icon">Z</div>
+                    <div class="zya-wordmark"><span class="zya-name">ZYA</span><span class="zya-tag">LAW FIRM</span></div>
+                </a>
+                <p>Providing expert Canadian immigration legal services with integrity, compassion, and a deep commitment to every client's success.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 ZYA Law Firm. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Disclaimer</a>
-                </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Work Visas</a></li>
+                    <li><a href="services.html">Study Permits</a></li>
+                    <li><a href="services.html">Family Sponsorship</a></li>
+                    <li><a href="services.html">Express Entry</a></li>
+                    <li><a href="services.html">Citizenship</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html">Our Attorney</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:info@zyalawfirm.com">info@zyalawfirm.com</a></li>
+                    <li><a href="tel:+12265052867">+1 (226) 505-2867</a></li>
+                    <li><a href="#">Toronto, Ontario, Canada</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ZYA Law Firm. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+        mobileToggle.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = menuOpen ? 'hidden' : '';
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => { menuOpen = false; mobileToggle.classList.remove('active'); mobileMenu.classList.remove('active'); document.body.style.overflow = ''; });
+        });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+
 </body>
 </html>

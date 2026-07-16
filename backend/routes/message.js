@@ -12,12 +12,12 @@ router.get('/admin/:caseId', authMiddleware, async (req, res) => {
 
         const { caseId } = req.params;
 
-        const [messages] = await db.query(
+        const messages = await db.allAsync(
             'SELECT * FROM case_messages WHERE case_id = ? ORDER BY created_at ASC',
             [caseId]
         );
 
-        await db.query(
+        await db.runAsync(
             "UPDATE case_messages SET is_read = 1 WHERE case_id = ? AND sender_type = 'client'",
             [caseId]
         );
@@ -43,18 +43,18 @@ router.post('/admin/send', authMiddleware, async (req, res) => {
             return res.status(400).json({ success: false, message: 'Case and message are required.' });
         }
 
-        const [cases] = await db.query('SELECT id FROM cases WHERE id = ?', [caseId]);
+        const caseRow = await db.getAsync('SELECT id FROM cases WHERE id = ?', [caseId]);
 
-        if (cases.length === 0) {
+        if (!caseRow) {
             return res.status(404).json({ success: false, message: 'Case not found.' });
         }
 
-        await db.query(
+        await db.runAsync(
             "INSERT INTO case_messages (case_id, sender_type, content) VALUES (?, 'admin', ?)",
             [caseId, content.trim()]
         );
 
-        await db.query('UPDATE cases SET updated_at = CURRENT_TIMESTAMP WHERE id = ?', [caseId]);
+        await db.runAsync('UPDATE cases SET updated_at = CURRENT_TIMESTAMP WHERE id = ?', [caseId]);
 
         res.status(201).json({ success: true, message: 'Reply sent.' });
     } catch (error) {
