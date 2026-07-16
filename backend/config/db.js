@@ -1,24 +1,21 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-// Create database file in the backend folder
-const dbPath = path.join(__dirname, '..', 'database.sqlite');
+const dbPath = path.join(__dirname, 'database.sqlite');
 
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
-        console.error('❌ SQLite Database Error:', err.message);
+        console.error('❌ Database Error:', err.message);
     } else {
-        console.log('✅ SQLite Database Connected Successfully!');
-        console.log('📁 Database file:', dbPath);
+        console.log('✅ Database Connected');
     }
 });
 
-// Promisify db methods for async/await support
 db.runAsync = function(sql, params = []) {
     return new Promise((resolve, reject) => {
         this.run(sql, params, function(err) {
             if (err) reject(err);
-            else resolve({ id: this.lastID, changes: this.changes });
+            else resolve({ lastID: this.lastID, changes: this.changes });
         });
     });
 };

@@ -1,12 +1,10 @@
-const db = require('./db');
+const db = require('./database');
 
 let schemaReady;
 
 async function createSchema() {
-    // Enable foreign keys
     await db.runAsync('PRAGMA foreign_keys = ON');
 
-    // Create contacts table
     await db.runAsync(`
         CREATE TABLE IF NOT EXISTS contacts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,7 +21,6 @@ async function createSchema() {
         )
     `);
 
-    // Create clients table
     await db.runAsync(`
         CREATE TABLE IF NOT EXISTS clients (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,7 +36,6 @@ async function createSchema() {
         )
     `);
 
-    // Create cases table
     await db.runAsync(`
         CREATE TABLE IF NOT EXISTS cases (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -54,7 +50,6 @@ async function createSchema() {
         )
     `);
 
-    // Create trigger for updated_at
     await db.runAsync(`
         CREATE TRIGGER IF NOT EXISTS cases_updated_at
         AFTER UPDATE ON cases
@@ -64,7 +59,6 @@ async function createSchema() {
         END
     `);
 
-    // Create case_updates table
     await db.runAsync(`
         CREATE TABLE IF NOT EXISTS case_updates (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -77,7 +71,6 @@ async function createSchema() {
         )
     `);
 
-    // Create case_messages table
     await db.runAsync(`
         CREATE TABLE IF NOT EXISTS case_messages (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -90,7 +83,6 @@ async function createSchema() {
         )
     `);
 
-    // Create users table (for admin login)
     await db.runAsync(`
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -111,7 +103,6 @@ function ensureSchema() {
             throw error;
         });
     }
-
     return schemaReady;
 }
 

@@ -1,27 +1,22 @@
-const db = require('./config/db');
+const db = require('./database');
 
 async function cleanup() {
     try {
         console.log('🔍 Checking for duplicate admin accounts...');
 
-        // Get all users
         const users = await db.allAsync('SELECT * FROM users ORDER BY id');
         console.log(`Found ${users.length} user(s):`);
         users.forEach(u => console.log(`  - ID ${u.id}: ${u.username} (created: ${u.created_at})`));
 
         if (users.length > 1) {
-            // Keep the first one, delete the rest
             const keepId = users[0].id;
             console.log(`\n🗑️  Removing duplicate admins, keeping ID ${keepId}...`);
-
             await db.runAsync('DELETE FROM users WHERE id != ?', [keepId]);
-
             console.log('✅ Cleanup complete!');
         } else {
             console.log('✅ No duplicates found.');
         }
 
-        // Verify
         const remaining = await db.allAsync('SELECT * FROM users');
         console.log(`\n📊 Total users now: ${remaining.length}`);
 
