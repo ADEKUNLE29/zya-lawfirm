@@ -5,25 +5,20 @@ const path = require('path');
 
 const contactRoutes = require('./routes/contact');
 const authRoutes = require('./routes/auth');
-const caseRoutes = require('./routes/case');
-const messageRoutes = require('./routes/message');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ===== FIXED CORS — ALLOW ALL LOCALHOST PORTS =====
+// ===== FIXED CORS — ALLOW ALL ORIGINS =====
 app.use(cors({
-    origin: function(origin, callback) {
-        if (!origin || origin.includes('localhost') || origin.includes('127.0.0.1')) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: true,  // Allow ALL origins (localhost, render, custom domain)
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Handle preflight requests
+app.options('*', cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -31,15 +26,13 @@ app.use(express.urlencoded({ extended: true }));
 // ===== API ROUTES =====
 app.use('/api/contact', contactRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api/case', caseRoutes);
-app.use('/api/message', messageRoutes);
 
 // ===== SERVE STATIC FILES (Frontend) =====
 app.use(express.static(path.join(__dirname, '../')));
 
 // ===== ADMIN DASHBOARD ROUTE =====
 app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, '../css/admin.html'));
+    res.sendFile(path.join(__dirname, '../admin.html'));
 });
 
 // ===== HEALTH CHECK =====
@@ -68,7 +61,7 @@ app.listen(PORT, () => {
     console.log('╠══════════════════════════════════════════╣');
     console.log(`║  Server running on port ${PORT}               ║`);
     console.log(`║  API: http://localhost:${PORT}/api            ║`);
-    console.log('║  CORS: All localhost ports allowed       ║');
+    console.log('║  CORS: ALL origins allowed               ║');
     console.log('║  Status: READY 🔥                      ║');
     console.log('╚══════════════════════════════════════════╝');
 });
