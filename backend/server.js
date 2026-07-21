@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -10,29 +10,18 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
-// Email setup (if credentials exist)
-let transporter = null;
-if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-    try {
-        transporter = nodemailer.createTransport({
-            host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-            port: parseInt(process.env.EMAIL_PORT) || 587,
-            secure: false,
-            family: 4, // Force IPv4 - fixes connection timeouts on Render
-            connectionTimeout: 10000,
-            greetingTimeout: 10000,
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
-            }
-        });
-        console.log('✅ Email configured');
-    } catch (e) {
-        console.log('⚠️ Email config failed:', e.message);
-    }
+// Email setup via Resend (HTTP API - works on Render's free tier, unlike SMTP)
+let resend = null;
+if (process.env.RESEND_API_KEY) {
+    resend = new Resend(process.env.RESEND_API_KEY);
+    console.log('✅ Email configured (Resend)');
 } else {
-    console.log('⚠️ No email credentials set');
+    console.log('⚠️ No RESEND_API_KEY set - emails will not send');
 }
+
+// Sender address - using Resend's test address until zyalawfirm.com is verified in Resend.
+// Once verified, change this to: 'ZYA Law Firm <info@zyalawfirm.com>'
+const FROM_ADDRESS = 'ZYA Law Firm <onboarding@resend.dev>';
 
 // In-memory storage (no database needed)
 const contacts = [];
@@ -64,10 +53,10 @@ app.post('/api/contact', (req, res) => {
     console.log('✅ New contact saved:', contact.id);
 
     // Send emails in background (don't wait, don't crash)
-    if (transporter) {
+    if (resend) {
         // To lawyer
-        transporter.sendMail({
-            from: `"ZYA Law Firm" <${process.env.EMAIL_USER}>`,
+        resend.emails.send({
+            from: FROM_ADDRESS,
             to: process.env.EMAIL_TO || process.env.EMAIL_USER,
             subject: `New Consultation: ${firstName} ${lastName}`,
             html: `<h2>New Contact</h2>
@@ -80,8 +69,8 @@ app.post('/api/contact', (req, res) => {
           .catch(err => console.log('❌ Lawyer email failed:', err.message));
 
         // To client
-        transporter.sendMail({
-            from: `"ZYA Law Firm" <${process.env.EMAIL_USER}>`,
+        resend.emails.send({
+            from: FROM_ADDRESS,
             to: email,
             subject: 'Thank You for Contacting ZYA Law Firm',
             html: `<h2>Thank You, ${firstName}!</h2>
@@ -143,6 +132,6 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
     console.log(`✅ ZYA Law Firm Server running on port ${PORT}`);
-    console.log(`📧 Email: ${transporter ? 'ON' : 'OFF'}`);
+    console.log(`📧 Email: ${resend ? 'ON (Resend)' : 'OFF'}`);
     console.log(`💾 Storage: In-memory (${contacts.length} contacts)`);
 });
